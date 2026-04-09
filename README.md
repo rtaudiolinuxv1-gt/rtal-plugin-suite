@@ -1,6 +1,6 @@
-# RTAL Plugin Suite
+# RTAL Plugin Suite (RTAudioLinux)
 
-This repository collects the RTAL guitar plugin projects into one build system.
+This repository contains all the RTAL guitar plugin projects into one build system.
 
 Good plugins enabled by default:
 - rtal-guitar-shadow
