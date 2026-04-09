@@ -1,0 +1,17 @@
+rtal-crystal-pluck Binary Licensing Notice
+
+The original project source code authored for rtal-crystal-pluck is licensed under
+DOC-1.0 (Dynamic Open/Closed License 1.0).
+
+Binaries produced from this project are distributed under DOC-1.0 only with respect
+to the original project code and only to the extent of the Licensor's copyright in
+that code.
+
+Third-party libraries, generated runtime code, SDK terms, linked system libraries,
+and other externally licensed materials included in, linked with, or required by
+these binaries remain subject to their own respective licenses and terms.
+
+Nothing in DOC-1.0 is intended to relicense, replace, or supersede any applicable
+third-party license.
+
+See THIRD_PARTY_NOTICES.md for additional information.

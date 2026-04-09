@@ -1,0 +1,129 @@
+DOC-1.0
+Dynamic Open/Closed License 1.0
+
+Copyright (c) 2026 rtaudiolinux <rtaudiolinux.v1@gmail.com>
+All rights reserved except as expressly granted under this License.
+
+1. Definitions
+
+1.1. “Licensor” means the copyright holder identified above, together with any successor or assignee of the Licensor’s rights in the Work.
+
+1.2. “Work” means the copyrighted work made available under this License, including all Source Code and all Binaries derived from such Source Code.
+
+1.3. “Source Code” means the preferred form of the Work for making modifications, including without limitation source files, interface definitions, build scripts, configuration files, and other files reasonably necessary to produce a Binary.
+
+1.4. “Binary” means any compiled, assembled, packaged, packaged-for-distribution, linked, or otherwise non-source form of the Work.
+
+1.5. “Modification” means any alteration of the Source Code, and any work based upon, derived from, adapted from, or incorporating the Source Code, in whole or in part, to the extent protected by applicable copyright law.
+
+1.6. “Fork” means any separate development line containing a copy of the Source Code, with or without Modifications.
+
+1.7. “License Change Notice” means a written public notice issued by the Licensor stating that some or all Source Code previously made available under this License shall, from a stated effective date, no longer be licensed under this License and shall instead be subject to a different license or to no public source license.
+
+1.8. “Transition Period” means the twenty-eight (28) calendar day period beginning on the effective date stated in the applicable License Change Notice.
+
+1.9. “Covered Source” means Source Code that is, at the relevant time, both:
+
+(a) distributed or made available under this License; and
+(b) owned by the Licensor in whole or in part to the extent necessary for the Licensor to grant, alter, withdraw, replace, or relicense the applicable rights under this License.
+
+For the avoidance of doubt, Covered Source includes only Source Code for which the Licensor has sufficient copyright interest or other written authority to license or relicense under this License.
+
+2. Limited Source Code License
+
+2.1. Subject to the terms and conditions of this License, and only for so long as particular Source Code remains Covered Source, the Licensor grants each recipient a personal, non-exclusive, non-transferable, revocable license to:
+
+(a) use, reproduce, and study the Covered Source;
+(b) modify the Covered Source;
+(c) create and maintain Forks of the Covered Source; and
+(d) compile, build, and generate Binaries from the Covered Source.
+
+2.2. No rights are granted except those expressly stated in this License. Without limitation, no trademark rights are granted.
+
+3. Dynamic Relicensing and Closure of Source Code
+
+3.1. The Licensor expressly reserves the right, at any time and in the Licensor’s sole discretion, to:
+
+(a) discontinue distribution of any Source Code under this License;
+(b) relicense, under different terms, any Source Code owned by the Licensor and distributed under this License, whether current, future, or previously released;
+(c) discontinue public source licensing and place under closed-source terms any Source Code owned by the Licensor and distributed under this License, whether current, future, or previously released; and
+(d) issue a License Change Notice with respect to any version, revision, branch, commit range, release line, or the Work as a whole.
+
+3.2. Upon the effective date of a License Change Notice, the affected Source Code shall cease to be Covered Source, except only as provided in Section 4.
+
+3.3. For the avoidance of doubt, this License does not grant any perpetual right to continue building, modifying, forking, or redistributing Source Code once that Source Code ceases to be Covered Source.
+
+4. Transition Period Build Right
+
+4.1. If Source Code lawfully obtained under this License becomes subject to a License Change Notice, each recipient who lawfully possessed such Source Code before the effective date of the License Change Notice may continue to compile and build Binaries from that Source Code during the Transition Period only.
+
+4.2. Any Binary validly built during the Transition Period shall be deemed a Binary validly built under this License and shall retain the redistribution rights stated in Section 5.
+
+4.3. Upon expiration of the Transition Period, no person may further compile, build, rebuild, package, or otherwise create new Binaries from the affected Source Code unless permitted under the replacement license or under separate written permission from the Licensor.
+
+5. Binary Rights; Survival
+
+5.1. Any Binary validly built from Covered Source while such Source Code was licensed under this License, including any Binary validly built during a Transition Period, may be used, reproduced, distributed, and redistributed indefinitely under this License.
+
+5.2. The rights granted in Section 5.1 survive any later License Change Notice, any later relicensing of the Source Code, and any later closure of the Source Code.
+
+5.3. Redistribution of a Binary under this Section does not grant any right to obtain, modify, compile, rebuild, or otherwise use the corresponding Source Code except to the extent that such Source Code remains Covered Source or the recipient is otherwise separately authorized in writing.
+
+6. Forks and Modifications
+
+6.1. Forks and Modifications are permitted only with respect to Covered Source or during an applicable Transition Period.
+
+6.2. Any distribution of Source Code, Forks, or Modifications under this License must:
+
+(a) preserve all existing copyright notices, attribution notices, authorship notices, and license notices in the original portions of the Work;
+(b) clearly identify that changes were made and the date of such changes;
+(c) state that the Fork or Modification is derived from the Work originally authored by the Licensor; and
+(d) include a complete copy of this License.
+
+6.3. No person may remove, obscure, falsify, or replace the Licensor’s copyright notice or authorship attribution in the original portions of the Work.
+
+7. Ownership; License-Back
+
+7.1. As between the Licensor and each recipient, the Licensor retains all right, title, and interest in and to the original Work and all original portions thereof.
+
+7.2. Except as otherwise provided by a separate written assignment, each contributor retains copyright in that contributor’s own original contributions contained in any Modification.
+
+7.3. As a condition of exercising any right to create, use, distribute, or permit distribution of any Modification or Fork under this License, each contributor hereby grants to the Licensor a perpetual, worldwide, irrevocable, non-exclusive, fully paid-up, royalty-free, transferable, sublicensable license to use, reproduce, modify, adapt, prepare derivative works from, publicly perform, publicly display, distribute, commercialize, relicense, and otherwise exploit that contributor’s contributions for any purpose, including closed-source licensing.
+
+7.4. The license-back in Section 7.3 survives termination of this License.
+
+7.5. This License does not itself transfer ownership of contributor copyright to the Licensor. Any transfer of ownership must be made by a separate written instrument signed as required by applicable law.
+
+8. Effect of License Change
+
+8.1. Following the effective date of a License Change Notice, and subject only to Section 4, any further copying, modification, forking, compilation, building, packaging, or other exercise of copyright rights in the affected Source Code must comply with the new license or separate written permission from the Licensor.
+
+8.2. Any attempt to create new Binaries from affected Source Code after expiration of the Transition Period, without authorization under the new license or separate written permission, is outside the scope of this License and prohibited.
+
+9. Termination
+
+9.1. Any violation of this License automatically terminates the rights granted under Sections 2, 4, and 6.
+
+9.2. Upon termination, the violating party must cease all exercise of rights under those Sections.
+
+9.3. Rights in validly built Binaries under Section 5 survive termination, except to the extent the distribution of such Binaries independently violates this License.
+
+10. No Trademark License
+
+10.1. This License does not grant any right to use the Licensor’s name, trade name, trademark, service mark, logo, or branding, except as necessary to provide truthful attribution required by this License.
+
+11. Disclaimer of Warranty
+
+THE WORK IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT.
+
+12. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM OR RELATING TO THE WORK OR THIS LICENSE.
+
+13. Severability
+
+If any provision of this License is held unenforceable, that provision shall be enforced to the maximum extent permitted by law and the remainder of this License shall remain in full force and effect.
+
+14. Entire License
+
+This License constitutes the complete and exclusive statement of the terms governing the rights granted herein, unless the Licensor separately grants additional rights in writing.
