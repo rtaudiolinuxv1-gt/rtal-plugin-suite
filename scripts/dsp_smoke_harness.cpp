@@ -188,6 +188,7 @@ void writeFloatWav(const std::string& path, const std::vector<float>& l, const s
 // Plugins can relax individual checks with metadata, e.g.
 //   declare rtal_smoke "allow-quiet";      (swell/gate effects that mute fast playing)
 //   declare rtal_smoke "allow-sustain";    (freeze/hold effects with intentional infinite tails)
+//   declare rtal_smoke "allow-gain";       (EQ/utility gain stages: corner states may be loud by request)
 struct SmokeMeta : public Meta {
     std::string flags;
     void declare(const char* key, const char* value) override
@@ -385,7 +386,8 @@ int main(int argc, char** argv)
         worstCpu = std::max(worstCpu, res.cpuRealtime);
         std::vector<std::string> problems;
         if (!res.finite) problems.push_back("non-finite output");
-        if (res.peak > 6.0) problems.push_back("runaway peak");
+        bool cornerState = sc.name.rfind("all-", 0) == 0 || sc.name.rfind("random-", 0) == 0;
+        if (res.peak > 6.0 && !(cornerState && smokeMeta.has("allow-gain"))) problems.push_back("runaway peak");
         if (res.tailRms > 0.25 && !smokeMeta.has("allow-sustain")) problems.push_back("tail not decaying");
         if (std::fabs(res.dc) > 0.05) problems.push_back("dc offset");
         bool wantSignal = sc.name == "default" || sc.name.rfind("preset-", 0) == 0;

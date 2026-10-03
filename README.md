@@ -62,6 +62,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-twelve-string
 - rtal-endless-stair
 - rtal-loop-lab
+- rtal-coral-buzz
+- rtal-synth-ghost
+- rtal-acoustic-body
+- rtal-slide-scoop
+- rtal-stereo-sculpt
+- rtal-tone-carver
 
 ## Configure
 
