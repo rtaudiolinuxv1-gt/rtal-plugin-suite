@@ -62,6 +62,12 @@ option(ENABLE_PRERELEASE_RTAL_BROWNFACE_PULSE "Enable prerelease rtal-brownface-
 option(ENABLE_PRERELEASE_RTAL_PIXEL_ROT "Enable prerelease rtal-pixel-rot" ON)
 option(ENABLE_PRERELEASE_RTAL_GLASS_SQUEEZE "Enable prerelease rtal-glass-squeeze" ON)
 option(ENABLE_PRERELEASE_RTAL_TRI_CHORUS "Enable prerelease rtal-tri-chorus" ON)
+option(ENABLE_PRERELEASE_RTAL_JET_WASH "Enable prerelease rtal-jet-wash" ON)
+option(ENABLE_PRERELEASE_RTAL_TWIN_HARMONY "Enable prerelease rtal-twin-harmony" ON)
+option(ENABLE_PRERELEASE_RTAL_ATTACK_SCULPT "Enable prerelease rtal-attack-sculpt" ON)
+option(ENABLE_PRERELEASE_RTAL_CASSETTE_DREAM "Enable prerelease rtal-cassette-dream" ON)
+option(ENABLE_PRERELEASE_RTAL_MOON_RING "Enable prerelease rtal-moon-ring" ON)
+option(ENABLE_PRERELEASE_RTAL_RHYTHM_ECHO "Enable prerelease rtal-rhythm-echo" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -110,6 +116,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BROWNFACE_PULSE prerelease "plugins/rtal-
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PIXEL_ROT prerelease "plugins/rtal-pixel-rot" "rtal-pixel-rot")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GLASS_SQUEEZE prerelease "plugins/rtal-glass-squeeze" "rtal-glass-squeeze")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TRI_CHORUS prerelease "plugins/rtal-tri-chorus" "rtal-tri-chorus")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_JET_WASH prerelease "plugins/rtal-jet-wash" "rtal-jet-wash")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TWIN_HARMONY prerelease "plugins/rtal-twin-harmony" "rtal-twin-harmony")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ATTACK_SCULPT prerelease "plugins/rtal-attack-sculpt" "rtal-attack-sculpt")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CASSETTE_DREAM prerelease "plugins/rtal-cassette-dream" "rtal-cassette-dream")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_MOON_RING prerelease "plugins/rtal-moon-ring" "rtal-moon-ring")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_RHYTHM_ECHO prerelease "plugins/rtal-rhythm-echo" "rtal-rhythm-echo")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

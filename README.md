@@ -32,6 +32,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-pixel-rot
 - rtal-glass-squeeze
 - rtal-tri-chorus
+- rtal-jet-wash
+- rtal-twin-harmony
+- rtal-attack-sculpt
+- rtal-cassette-dream
+- rtal-moon-ring
+- rtal-rhythm-echo
 
 ## Configure
 
