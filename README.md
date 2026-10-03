@@ -26,6 +26,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-vowel-mouth
 - rtal-cathedral-shimmer
 - rtal-stutter-gate
+- rtal-envelope-yeti
+- rtal-velvet-fuzz
+- rtal-brownface-pulse
+- rtal-pixel-rot
+- rtal-glass-squeeze
+- rtal-tri-chorus
 
 ## Configure
 
