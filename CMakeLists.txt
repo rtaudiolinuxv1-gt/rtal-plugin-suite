@@ -74,6 +74,12 @@ option(ENABLE_PRERELEASE_RTAL_VIOLIN_SWELL "Enable prerelease rtal-violin-swell"
 option(ENABLE_PRERELEASE_RTAL_MIRROR_DETUNE "Enable prerelease rtal-mirror-detune" ON)
 option(ENABLE_PRERELEASE_RTAL_CRYBABY_GHOST "Enable prerelease rtal-crybaby-ghost" ON)
 option(ENABLE_PRERELEASE_RTAL_WHAMMY_DIVE "Enable prerelease rtal-whammy-dive" ON)
+option(ENABLE_PRERELEASE_RTAL_PLATE_GLOW "Enable prerelease rtal-plate-glow" ON)
+option(ENABLE_PRERELEASE_RTAL_SILENCE_KEEPER "Enable prerelease rtal-silence-keeper" ON)
+option(ENABLE_PRERELEASE_RTAL_SPLIT_DRIVE "Enable prerelease rtal-split-drive" ON)
+option(ENABLE_PRERELEASE_RTAL_AM_RADIO "Enable prerelease rtal-am-radio" ON)
+option(ENABLE_PRERELEASE_RTAL_POWER_CUT "Enable prerelease rtal-power-cut" ON)
+option(ENABLE_PRERELEASE_RTAL_STEP_LADDER "Enable prerelease rtal-step-ladder" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -134,6 +140,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_VIOLIN_SWELL prerelease "plugins/rtal-vio
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_MIRROR_DETUNE prerelease "plugins/rtal-mirror-detune" "rtal-mirror-detune")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CRYBABY_GHOST prerelease "plugins/rtal-crybaby-ghost" "rtal-crybaby-ghost")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_WHAMMY_DIVE prerelease "plugins/rtal-whammy-dive" "rtal-whammy-dive")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PLATE_GLOW prerelease "plugins/rtal-plate-glow" "rtal-plate-glow")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SILENCE_KEEPER prerelease "plugins/rtal-silence-keeper" "rtal-silence-keeper")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SPLIT_DRIVE prerelease "plugins/rtal-split-drive" "rtal-split-drive")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_AM_RADIO prerelease "plugins/rtal-am-radio" "rtal-am-radio")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_POWER_CUT prerelease "plugins/rtal-power-cut" "rtal-power-cut")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_STEP_LADDER prerelease "plugins/rtal-step-ladder" "rtal-step-ladder")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

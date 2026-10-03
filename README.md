@@ -44,6 +44,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-mirror-detune
 - rtal-crybaby-ghost
 - rtal-whammy-dive
+- rtal-plate-glow
+- rtal-silence-keeper
+- rtal-split-drive
+- rtal-am-radio
+- rtal-power-cut
+- rtal-step-ladder
 
 ## Configure
 
