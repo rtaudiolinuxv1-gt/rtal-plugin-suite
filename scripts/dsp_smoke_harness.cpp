@@ -67,6 +67,17 @@ struct ParamCollector : public MapUI {
         add(l, i, mn, mx, s);
         MapUI::addNumEntry(l, z, i, mn, mx, s);
     }
+    // Switches are exercised like 0/1 menus.
+    void addCheckButton(const char* l, FAUSTFLOAT* z) override
+    {
+        add(l, 0, 0, 1, 1);
+        MapUI::addCheckButton(l, z);
+    }
+    void addButton(const char* l, FAUSTFLOAT* z) override
+    {
+        add(l, 0, 0, 1, 1);
+        MapUI::addButton(l, z);
+    }
 };
 
 // Karplus-Strong pluck, good enough to look like a guitar to the DSP.
@@ -173,6 +184,18 @@ void writeFloatWav(const std::string& path, const std::vector<float>& l, const s
     }
     std::fclose(f);
 }
+
+// Plugins can relax individual checks with metadata, e.g.
+//   declare rtal_smoke "allow-quiet";      (swell/gate effects that mute fast playing)
+//   declare rtal_smoke "allow-sustain";    (freeze/hold effects with intentional infinite tails)
+struct SmokeMeta : public Meta {
+    std::string flags;
+    void declare(const char* key, const char* value) override
+    {
+        if (!std::strcmp(key, "rtal_smoke")) flags += std::string(value) + " ";
+    }
+    bool has(const char* flag) const { return flags.find(flag) != std::string::npos; }
+};
 
 struct Result {
     bool finite = true;
@@ -305,6 +328,10 @@ int main(int argc, char** argv)
     ParamCollector collector;
     probeDsp->buildUserInterface(&collector);
 
+    SmokeMeta smokeMeta;
+    probeDsp->metadata(&smokeMeta);
+    if (!smokeMeta.flags.empty()) std::printf("  smoke flags: %s\n", smokeMeta.flags.c_str());
+
     std::string presetPath;
     FAUSTFLOAT presetMax = 0;
     for (auto& p : collector.params) {
@@ -359,10 +386,10 @@ int main(int argc, char** argv)
         std::vector<std::string> problems;
         if (!res.finite) problems.push_back("non-finite output");
         if (res.peak > 6.0) problems.push_back("runaway peak");
-        if (res.tailRms > 0.25) problems.push_back("tail not decaying");
+        if (res.tailRms > 0.25 && !smokeMeta.has("allow-sustain")) problems.push_back("tail not decaying");
         if (std::fabs(res.dc) > 0.05) problems.push_back("dc offset");
         bool wantSignal = sc.name == "default" || sc.name.rfind("preset-", 0) == 0;
-        if (wantSignal && res.playRms < 1e-3) problems.push_back("silent output");
+        if (wantSignal && res.playRms < 1e-3 && !smokeMeta.has("allow-quiet")) problems.push_back("silent output");
         std::printf("  %-10s peak %6.3f  rms %6.4f  tail %8.6f  dc %+8.5f  cpu %5.2f%%  %s\n",
                     sc.name.c_str(), res.peak, res.playRms, res.tailRms, res.dc, res.cpuRealtime * 100.0,
                     problems.empty() ? "ok" : "FAIL");

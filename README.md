@@ -38,6 +38,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-cassette-dream
 - rtal-moon-ring
 - rtal-rhythm-echo
+- rtal-ice-age
+- rtal-fold-space
+- rtal-violin-swell
+- rtal-mirror-detune
+- rtal-crybaby-ghost
+- rtal-whammy-dive
 
 ## Configure
 

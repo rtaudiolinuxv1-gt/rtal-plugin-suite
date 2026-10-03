@@ -68,6 +68,12 @@ option(ENABLE_PRERELEASE_RTAL_ATTACK_SCULPT "Enable prerelease rtal-attack-sculp
 option(ENABLE_PRERELEASE_RTAL_CASSETTE_DREAM "Enable prerelease rtal-cassette-dream" ON)
 option(ENABLE_PRERELEASE_RTAL_MOON_RING "Enable prerelease rtal-moon-ring" ON)
 option(ENABLE_PRERELEASE_RTAL_RHYTHM_ECHO "Enable prerelease rtal-rhythm-echo" ON)
+option(ENABLE_PRERELEASE_RTAL_ICE_AGE "Enable prerelease rtal-ice-age" ON)
+option(ENABLE_PRERELEASE_RTAL_FOLD_SPACE "Enable prerelease rtal-fold-space" ON)
+option(ENABLE_PRERELEASE_RTAL_VIOLIN_SWELL "Enable prerelease rtal-violin-swell" ON)
+option(ENABLE_PRERELEASE_RTAL_MIRROR_DETUNE "Enable prerelease rtal-mirror-detune" ON)
+option(ENABLE_PRERELEASE_RTAL_CRYBABY_GHOST "Enable prerelease rtal-crybaby-ghost" ON)
+option(ENABLE_PRERELEASE_RTAL_WHAMMY_DIVE "Enable prerelease rtal-whammy-dive" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -122,6 +128,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ATTACK_SCULPT prerelease "plugins/rtal-at
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CASSETTE_DREAM prerelease "plugins/rtal-cassette-dream" "rtal-cassette-dream")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_MOON_RING prerelease "plugins/rtal-moon-ring" "rtal-moon-ring")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_RHYTHM_ECHO prerelease "plugins/rtal-rhythm-echo" "rtal-rhythm-echo")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ICE_AGE prerelease "plugins/rtal-ice-age" "rtal-ice-age")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_FOLD_SPACE prerelease "plugins/rtal-fold-space" "rtal-fold-space")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_VIOLIN_SWELL prerelease "plugins/rtal-violin-swell" "rtal-violin-swell")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_MIRROR_DETUNE prerelease "plugins/rtal-mirror-detune" "rtal-mirror-detune")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CRYBABY_GHOST prerelease "plugins/rtal-crybaby-ghost" "rtal-crybaby-ghost")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_WHAMMY_DIVE prerelease "plugins/rtal-whammy-dive" "rtal-whammy-dive")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
