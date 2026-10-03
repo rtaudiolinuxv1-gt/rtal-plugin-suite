@@ -56,6 +56,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-firefly-taps
 - rtal-brickwall
 - rtal-air-lift
+- rtal-eighty-gate
+- rtal-crystal-echo
+- rtal-fet-grab
+- rtal-twelve-string
+- rtal-endless-stair
+- rtal-loop-lab
 
 ## Configure
 

@@ -86,6 +86,12 @@ option(ENABLE_PRERELEASE_RTAL_DIGITAL_DUST "Enable prerelease rtal-digital-dust"
 option(ENABLE_PRERELEASE_RTAL_FIREFLY_TAPS "Enable prerelease rtal-firefly-taps" ON)
 option(ENABLE_PRERELEASE_RTAL_BRICKWALL "Enable prerelease rtal-brickwall" ON)
 option(ENABLE_PRERELEASE_RTAL_AIR_LIFT "Enable prerelease rtal-air-lift" ON)
+option(ENABLE_PRERELEASE_RTAL_EIGHTY_GATE "Enable prerelease rtal-eighty-gate" ON)
+option(ENABLE_PRERELEASE_RTAL_CRYSTAL_ECHO "Enable prerelease rtal-crystal-echo" ON)
+option(ENABLE_PRERELEASE_RTAL_FET_GRAB "Enable prerelease rtal-fet-grab" ON)
+option(ENABLE_PRERELEASE_RTAL_TWELVE_STRING "Enable prerelease rtal-twelve-string" ON)
+option(ENABLE_PRERELEASE_RTAL_ENDLESS_STAIR "Enable prerelease rtal-endless-stair" ON)
+option(ENABLE_PRERELEASE_RTAL_LOOP_LAB "Enable prerelease rtal-loop-lab" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -158,6 +164,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DIGITAL_DUST prerelease "plugins/rtal-dig
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_FIREFLY_TAPS prerelease "plugins/rtal-firefly-taps" "rtal-firefly-taps")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BRICKWALL prerelease "plugins/rtal-brickwall" "rtal-brickwall")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_AIR_LIFT prerelease "plugins/rtal-air-lift" "rtal-air-lift")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_EIGHTY_GATE prerelease "plugins/rtal-eighty-gate" "rtal-eighty-gate")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CRYSTAL_ECHO prerelease "plugins/rtal-crystal-echo" "rtal-crystal-echo")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_FET_GRAB prerelease "plugins/rtal-fet-grab" "rtal-fet-grab")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TWELVE_STRING prerelease "plugins/rtal-twelve-string" "rtal-twelve-string")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ENDLESS_STAIR prerelease "plugins/rtal-endless-stair" "rtal-endless-stair")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_LOOP_LAB prerelease "plugins/rtal-loop-lab" "rtal-loop-lab")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
