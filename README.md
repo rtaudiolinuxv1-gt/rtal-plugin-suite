@@ -14,6 +14,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-shite_amp
 - rtal-silkcut-choir
 - rtal-dreams-of-electric-cabinets
+- rtal-tape-ghost
+- rtal-orbit-phaser
+- rtal-barberpole-shift
+- rtal-sympathetic-strings
+- rtal-glitter-grains
+- rtal-leslie-weather
 
 ## Configure
 

@@ -44,6 +44,12 @@ option(ENABLE_PRERELEASE_RTAL_CRYSTAL_PLUCK "Enable prerelease rtal-crystal-pluc
 option(ENABLE_PRERELEASE_RTAL_SHITE_AMP "Enable prerelease rtal-shite_amp" ON)
 option(ENABLE_PRERELEASE_RTAL_SILKCUT_CHOIR "Enable prerelease rtal-silkcut-choir" ON)
 option(ENABLE_PRERELEASE_RTAL_DREAMS_OF_ELECTRIC_CABINETS "Enable prerelease rtal-dreams-of-electric-cabinets" ON)
+option(ENABLE_PRERELEASE_RTAL_TAPE_GHOST "Enable prerelease rtal-tape-ghost" ON)
+option(ENABLE_PRERELEASE_RTAL_ORBIT_PHASER "Enable prerelease rtal-orbit-phaser" ON)
+option(ENABLE_PRERELEASE_RTAL_BARBERPOLE_SHIFT "Enable prerelease rtal-barberpole-shift" ON)
+option(ENABLE_PRERELEASE_RTAL_SYMPATHETIC_STRINGS "Enable prerelease rtal-sympathetic-strings" ON)
+option(ENABLE_PRERELEASE_RTAL_GLITTER_GRAINS "Enable prerelease rtal-glitter-grains" ON)
+option(ENABLE_PRERELEASE_RTAL_LESLIE_WEATHER "Enable prerelease rtal-leslie-weather" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -74,6 +80,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CRYSTAL_PLUCK prerelease "plugins/rtal-cr
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SHITE_AMP prerelease "plugins/rtal-shite_amp" "rtal-shite_amp")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SILKCUT_CHOIR prerelease "plugins/rtal-silkcut-choir" "rtal-silkcut-choir")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DREAMS_OF_ELECTRIC_CABINETS prerelease "plugins/rtal-dreams-of-electric-cabinets" "rtal-dreams-of-electric-cabinets")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TAPE_GHOST prerelease "plugins/rtal-tape-ghost" "rtal-tape-ghost")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ORBIT_PHASER prerelease "plugins/rtal-orbit-phaser" "rtal-orbit-phaser")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BARBERPOLE_SHIFT prerelease "plugins/rtal-barberpole-shift" "rtal-barberpole-shift")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SYMPATHETIC_STRINGS prerelease "plugins/rtal-sympathetic-strings" "rtal-sympathetic-strings")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GLITTER_GRAINS prerelease "plugins/rtal-glitter-grains" "rtal-glitter-grains")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_LESLIE_WEATHER prerelease "plugins/rtal-leslie-weather" "rtal-leslie-weather")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
