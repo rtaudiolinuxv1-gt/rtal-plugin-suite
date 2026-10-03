@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <map>
+#include <memory>
 #include <random>
 #include <string>
 #include <vector>
@@ -225,7 +226,7 @@ Result render(dsp* d, const std::vector<float>& input, std::vector<float>* keepL
 }
 
 // Probe mode: render one input through one parameter state and save float WAV.
-//   --probe sine:440|guitar|impulse|noise --set /path=value --seconds 4 --out x.wav
+//   --probe sine:440|burst:440|guitar|impulse|noise --set /path=value --seconds 4 --out x.wav
 int runProbe(const std::string& input, const std::vector<std::pair<std::string, float>>& sets, double seconds,
              const std::string& outPath)
 {
@@ -234,6 +235,9 @@ int runProbe(const std::string& input, const std::vector<std::pair<std::string, 
     if (input.rfind("sine:", 0) == 0) {
         double f = std::atof(input.c_str() + 5);
         for (int n = 0; n < frames; ++n) sig[n] = float(0.5 * std::sin(2.0 * M_PI * f * n / kSampleRate));
+    } else if (input.rfind("burst:", 0) == 0) {
+        double f = std::atof(input.c_str() + 6);
+        for (int n = 0; n < std::min(frames, kSampleRate); ++n) sig[n] = float(0.5 * std::sin(2.0 * M_PI * f * n / kSampleRate));
     } else if (input == "guitar") {
         sig = makeGuitar(frames);
     } else if (input == "impulse") {
@@ -246,10 +250,11 @@ int runProbe(const std::string& input, const std::vector<std::pair<std::string, 
         std::fprintf(stderr, "unknown probe input %s\n", input.c_str());
         return 2;
     }
-    mydsp d;
-    d.init(kSampleRate);
+    // Heap allocation: large delay lines would overflow the stack.
+    std::unique_ptr<mydsp> d(new mydsp());
+    d->init(kSampleRate);
     MapUI ui;
-    d.buildUserInterface(&ui);
+    d->buildUserInterface(&ui);
     for (auto kv : sets) {
         // Accept a bare label ("Mix") as well as a full path.
         for (auto& p : ui.getFullpathMap()) {
@@ -268,7 +273,7 @@ int runProbe(const std::string& input, const std::vector<std::pair<std::string, 
         ui.setParamValue(kv.first, kv.second);
     }
     std::vector<float> l, r;
-    render(&d, sig, &l, &r);
+    render(d.get(), sig, &l, &r);
     writeFloatWav(outPath, l, r);
     return 0;
 }
@@ -296,9 +301,9 @@ int main(int argc, char** argv)
     int frames = int((kPlaySeconds + kTailSeconds) * kSampleRate);
     std::vector<float> guitar = makeGuitar(frames);
 
-    mydsp probeDsp;
+    std::unique_ptr<mydsp> probeDsp(new mydsp());
     ParamCollector collector;
-    probeDsp.buildUserInterface(&collector);
+    probeDsp->buildUserInterface(&collector);
 
     std::string presetPath;
     FAUSTFLOAT presetMax = 0;
@@ -342,14 +347,14 @@ int main(int argc, char** argv)
     int failures = 0;
     double worstCpu = 0.0;
     for (auto& sc : scenarios) {
-        mydsp d;
-        d.init(kSampleRate);
+        std::unique_ptr<mydsp> d(new mydsp());
+        d->init(kSampleRate);
         MapUI ui;
-        d.buildUserInterface(&ui);
+        d->buildUserInterface(&ui);
         for (auto& kv : sc.values) ui.setParamValue(kv.first, kv.second);
         bool keep = !wavPrefix.empty() && (sc.name == "default" || sc.name.rfind("preset-", 0) == 0);
         std::vector<float> l, r;
-        Result res = render(&d, guitar, keep ? &l : nullptr, keep ? &r : nullptr);
+        Result res = render(d.get(), guitar, keep ? &l : nullptr, keep ? &r : nullptr);
         worstCpu = std::max(worstCpu, res.cpuRealtime);
         std::vector<std::string> problems;
         if (!res.finite) problems.push_back("non-finite output");

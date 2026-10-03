@@ -20,6 +20,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-sympathetic-strings
 - rtal-glitter-grains
 - rtal-leslie-weather
+- rtal-backwards-sunday
+- rtal-drip-tank
+- rtal-sub-orbit
+- rtal-vowel-mouth
+- rtal-cathedral-shimmer
+- rtal-stutter-gate
 
 ## Configure
 

@@ -50,6 +50,12 @@ option(ENABLE_PRERELEASE_RTAL_BARBERPOLE_SHIFT "Enable prerelease rtal-barberpol
 option(ENABLE_PRERELEASE_RTAL_SYMPATHETIC_STRINGS "Enable prerelease rtal-sympathetic-strings" ON)
 option(ENABLE_PRERELEASE_RTAL_GLITTER_GRAINS "Enable prerelease rtal-glitter-grains" ON)
 option(ENABLE_PRERELEASE_RTAL_LESLIE_WEATHER "Enable prerelease rtal-leslie-weather" ON)
+option(ENABLE_PRERELEASE_RTAL_BACKWARDS_SUNDAY "Enable prerelease rtal-backwards-sunday" ON)
+option(ENABLE_PRERELEASE_RTAL_DRIP_TANK "Enable prerelease rtal-drip-tank" ON)
+option(ENABLE_PRERELEASE_RTAL_SUB_ORBIT "Enable prerelease rtal-sub-orbit" ON)
+option(ENABLE_PRERELEASE_RTAL_VOWEL_MOUTH "Enable prerelease rtal-vowel-mouth" ON)
+option(ENABLE_PRERELEASE_RTAL_CATHEDRAL_SHIMMER "Enable prerelease rtal-cathedral-shimmer" ON)
+option(ENABLE_PRERELEASE_RTAL_STUTTER_GATE "Enable prerelease rtal-stutter-gate" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -86,6 +92,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BARBERPOLE_SHIFT prerelease "plugins/rtal
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SYMPATHETIC_STRINGS prerelease "plugins/rtal-sympathetic-strings" "rtal-sympathetic-strings")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GLITTER_GRAINS prerelease "plugins/rtal-glitter-grains" "rtal-glitter-grains")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_LESLIE_WEATHER prerelease "plugins/rtal-leslie-weather" "rtal-leslie-weather")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BACKWARDS_SUNDAY prerelease "plugins/rtal-backwards-sunday" "rtal-backwards-sunday")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DRIP_TANK prerelease "plugins/rtal-drip-tank" "rtal-drip-tank")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SUB_ORBIT prerelease "plugins/rtal-sub-orbit" "rtal-sub-orbit")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_VOWEL_MOUTH prerelease "plugins/rtal-vowel-mouth" "rtal-vowel-mouth")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CATHEDRAL_SHIMMER prerelease "plugins/rtal-cathedral-shimmer" "rtal-cathedral-shimmer")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_STUTTER_GATE prerelease "plugins/rtal-stutter-gate" "rtal-stutter-gate")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
