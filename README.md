@@ -85,6 +85,11 @@ Prerelease plugins available via explicit CMake options:
 - rtal-tweed-glow
 - rtal-skip-scratch
 - rtal-inverse-cathedral
+- rtal-gamelan-bells
+- rtal-phase-mod
+- rtal-pick-tamer
+- rtal-passing-train
+- rtal-cloud-bank
 
 ## New effects at a glance
 
@@ -118,6 +123,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-sympathetic-strings`](plugins/rtal-sympathetic-strings/README.md) | Bank of tuned sympathetic strings that ring along with your playing in a chosen key and chord. |
 | [`rtal-velvet-hall`](plugins/rtal-velvet-hall/README.md) | Lush modulated hall: eight-line feedback delay network with early reflections, bloom and chorused tail. |
 | [`rtal-inverse-cathedral`](plugins/rtal-inverse-cathedral/README.md) | Reverse reverb: a big hall's tail is cut into windows and played backwards, so every phrase swells up out of nothing. |
+| [`rtal-cloud-bank`](plugins/rtal-cloud-bank/README.md) | One-knob ambient machine: modulated echoes into a shimmering diffuse tank, with a freeze switch. |
 
 ### Modulation
 
@@ -136,6 +142,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-photocell-vibe`](plugins/rtal-photocell-vibe/README.md) | Photocell vibe: four staggered phase stages driven by a lagging lamp, for that throbbing chorus/vibrato. |
 | [`rtal-abbey-adt`](plugins/rtal-abbey-adt/README.md) | Artificial double tracking: a varispeed tape copy wanders behind your part, or swoops into tape flanging. |
 | [`rtal-lorenz-drift`](plugins/rtal-lorenz-drift/README.md) | Chaotic modulator: a Lorenz attractor steers a resonant filter, pitch wobble and stereo position, never repeating. |
+| [`rtal-passing-train`](plugins/rtal-passing-train/README.md) | Doppler fly-by: your guitar races past the listener along a track, with true Doppler pitch, distance and air absorption. |
 
 ### Pitch & harmony
 
@@ -151,6 +158,8 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-coral-buzz`](plugins/rtal-coral-buzz/README.md) | Electric sitar: a buzzing bridge whose bright jawari sweep climbs through the harmonics as each note decays. |
 | [`rtal-chord-vocoder`](plugins/rtal-chord-vocoder/README.md) | Sixteen-band vocoder: your guitar articulates a synth chord pad, fixed in a key or following the note you play. |
 | [`rtal-snap-tune`](plugins/rtal-snap-tune/README.md) | Scale-snapping pitch correction for single-note lines: from gentle tuning help to the hard robotic snap. |
+| [`rtal-gamelan-bells`](plugins/rtal-gamelan-bells/README.md) | Modal resonator: each picked note strikes a tuned bell, gamelan gong, glass or marimba bar that rings at your pitch. |
+| [`rtal-phase-mod`](plugins/rtal-phase-mod/README.md) | FM guitar: audio-rate phase modulation locked to your pitch, for DX-style bells, brass and metallic clangs. |
 
 ### Filter & wah
 
@@ -187,6 +196,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-attack-sculpt`](plugins/rtal-attack-sculpt/README.md) | Level-independent transient shaper: boost or soften pick attack and sustain separately. |
 | [`rtal-violin-swell`](plugins/rtal-violin-swell/README.md) | Automatic volume swell: every new note fades in from silence, with an optional ambient echo wash. |
 | [`rtal-hush-band`](plugins/rtal-hush-band/README.md) | Three-band downward expander: quietly pushes down hiss and hum in each band without chopping your notes like a gate. |
+| [`rtal-pick-tamer`](plugins/rtal-pick-tamer/README.md) | Two-band dynamic EQ: cuts harsh pick click and boomy low notes only when they jump out, leaving the rest alone. |
 
 ### Rhythm & performance
 

@@ -115,6 +115,11 @@ option(ENABLE_PRERELEASE_RTAL_HUSH_BAND "Enable prerelease rtal-hush-band" ON)
 option(ENABLE_PRERELEASE_RTAL_TWEED_GLOW "Enable prerelease rtal-tweed-glow" ON)
 option(ENABLE_PRERELEASE_RTAL_SKIP_SCRATCH "Enable prerelease rtal-skip-scratch" ON)
 option(ENABLE_PRERELEASE_RTAL_INVERSE_CATHEDRAL "Enable prerelease rtal-inverse-cathedral" ON)
+option(ENABLE_PRERELEASE_RTAL_GAMELAN_BELLS "Enable prerelease rtal-gamelan-bells" ON)
+option(ENABLE_PRERELEASE_RTAL_PHASE_MOD "Enable prerelease rtal-phase-mod" ON)
+option(ENABLE_PRERELEASE_RTAL_PICK_TAMER "Enable prerelease rtal-pick-tamer" ON)
+option(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN "Enable prerelease rtal-passing-train" ON)
+option(ENABLE_PRERELEASE_RTAL_CLOUD_BANK "Enable prerelease rtal-cloud-bank" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -216,6 +221,11 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HUSH_BAND prerelease "plugins/rtal-hush-b
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TWEED_GLOW prerelease "plugins/rtal-tweed-glow" "rtal-tweed-glow")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SKIP_SCRATCH prerelease "plugins/rtal-skip-scratch" "rtal-skip-scratch")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_INVERSE_CATHEDRAL prerelease "plugins/rtal-inverse-cathedral" "rtal-inverse-cathedral")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GAMELAN_BELLS prerelease "plugins/rtal-gamelan-bells" "rtal-gamelan-bells")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PHASE_MOD prerelease "plugins/rtal-phase-mod" "rtal-phase-mod")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PICK_TAMER prerelease "plugins/rtal-pick-tamer" "rtal-pick-tamer")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN prerelease "plugins/rtal-passing-train" "rtal-passing-train")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CLOUD_BANK prerelease "plugins/rtal-cloud-bank" "rtal-cloud-bank")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
