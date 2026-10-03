@@ -103,6 +103,12 @@ option(ENABLE_PRERELEASE_RTAL_CHORD_VOCODER "Enable prerelease rtal-chord-vocode
 option(ENABLE_PRERELEASE_RTAL_ABBEY_ADT "Enable prerelease rtal-abbey-adt" ON)
 option(ENABLE_PRERELEASE_RTAL_BEAT_REPEAT "Enable prerelease rtal-beat-repeat" ON)
 option(ENABLE_PRERELEASE_RTAL_PHOTOCELL_VIBE "Enable prerelease rtal-photocell-vibe" ON)
+option(ENABLE_PRERELEASE_RTAL_VELVET_HALL "Enable prerelease rtal-velvet-hall" ON)
+option(ENABLE_PRERELEASE_RTAL_SNAP_TUNE "Enable prerelease rtal-snap-tune" ON)
+option(ENABLE_PRERELEASE_RTAL_DUB_STATION "Enable prerelease rtal-dub-station" ON)
+option(ENABLE_PRERELEASE_RTAL_GREEN_MILE "Enable prerelease rtal-green-mile" ON)
+option(ENABLE_PRERELEASE_RTAL_TREBLE_BOOST "Enable prerelease rtal-treble-boost" ON)
+option(ENABLE_PRERELEASE_RTAL_LORENZ_DRIFT "Enable prerelease rtal-lorenz-drift" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -192,6 +198,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CHORD_VOCODER prerelease "plugins/rtal-ch
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ABBEY_ADT prerelease "plugins/rtal-abbey-adt" "rtal-abbey-adt")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BEAT_REPEAT prerelease "plugins/rtal-beat-repeat" "rtal-beat-repeat")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PHOTOCELL_VIBE prerelease "plugins/rtal-photocell-vibe" "rtal-photocell-vibe")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_VELVET_HALL prerelease "plugins/rtal-velvet-hall" "rtal-velvet-hall")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SNAP_TUNE prerelease "plugins/rtal-snap-tune" "rtal-snap-tune")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DUB_STATION prerelease "plugins/rtal-dub-station" "rtal-dub-station")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GREEN_MILE prerelease "plugins/rtal-green-mile" "rtal-green-mile")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TREBLE_BOOST prerelease "plugins/rtal-treble-boost" "rtal-treble-boost")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_LORENZ_DRIFT prerelease "plugins/rtal-lorenz-drift" "rtal-lorenz-drift")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

@@ -73,6 +73,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-abbey-adt
 - rtal-beat-repeat
 - rtal-photocell-vibe
+- rtal-velvet-hall
+- rtal-snap-tune
+- rtal-dub-station
+- rtal-green-mile
+- rtal-treble-boost
+- rtal-lorenz-drift
 
 ## New effects at a glance
 
@@ -91,6 +97,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-glitter-grains`](plugins/rtal-glitter-grains/README.md) | Eight-voice granular cloud delay with pitch sets, reverse grains and feedback. |
 | [`rtal-loop-lab`](plugins/rtal-loop-lab/README.md) | Stereo looper with record, overdub with fading layers, play/stop, clear, half-speed and reverse playback. |
 | [`rtal-beat-repeat`](plugins/rtal-beat-repeat/README.md) | Performance beat repeat: hold the switch to loop the last slice in time, with decay and falling-pitch glitch. |
+| [`rtal-dub-station`](plugins/rtal-dub-station/README.md) | Dub echo station: throw switch, sweepable loop filter, runaway feedback and a spring tank, all for live dubbing. |
 
 ### Reverb & ambience
 
@@ -102,6 +109,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-eighty-gate`](plugins/rtal-eighty-gate/README.md) | Eighties gated reverb and reverse-gate: a huge room chopped off by a gate keyed from your playing. |
 | [`rtal-ice-age`](plugins/rtal-ice-age/README.md) | Infinite-sustain freeze pad: captures each new chord into a frozen tank and crossfades between layers. |
 | [`rtal-sympathetic-strings`](plugins/rtal-sympathetic-strings/README.md) | Bank of tuned sympathetic strings that ring along with your playing in a chosen key and chord. |
+| [`rtal-velvet-hall`](plugins/rtal-velvet-hall/README.md) | Lush modulated hall: eight-line feedback delay network with early reflections, bloom and chorused tail. |
 
 ### Modulation
 
@@ -119,6 +127,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-orbit-3d`](plugins/rtal-orbit-3d/README.md) | Binaural spatializer for headphones: the guitar orbits your head using interaural time, level and shadow cues. |
 | [`rtal-photocell-vibe`](plugins/rtal-photocell-vibe/README.md) | Photocell vibe: four staggered phase stages driven by a lagging lamp, for that throbbing chorus/vibrato. |
 | [`rtal-abbey-adt`](plugins/rtal-abbey-adt/README.md) | Artificial double tracking: a varispeed tape copy wanders behind your part, or swoops into tape flanging. |
+| [`rtal-lorenz-drift`](plugins/rtal-lorenz-drift/README.md) | Chaotic modulator: a Lorenz attractor steers a resonant filter, pitch wobble and stereo position, never repeating. |
 
 ### Pitch & harmony
 
@@ -133,6 +142,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-synth-ghost`](plugins/rtal-synth-ghost/README.md) | Monophonic guitar synth: tracks your pitch and plays a saw/square oscillator through an enveloped ladder filter. |
 | [`rtal-coral-buzz`](plugins/rtal-coral-buzz/README.md) | Electric sitar: a buzzing bridge whose bright jawari sweep climbs through the harmonics as each note decays. |
 | [`rtal-chord-vocoder`](plugins/rtal-chord-vocoder/README.md) | Sixteen-band vocoder: your guitar articulates a synth chord pad, fixed in a key or following the note you play. |
+| [`rtal-snap-tune`](plugins/rtal-snap-tune/README.md) | Scale-snapping pitch correction for single-note lines: from gentle tuning help to the hard robotic snap. |
 
 ### Filter & wah
 
@@ -147,6 +157,8 @@ Each plugin has its own README with a description of how it works, every control
 
 | Plugin | What it does |
 | --- | --- |
+| [`rtal-green-mile`](plugins/rtal-green-mile/README.md) | Mid-hump overdrive: only the mids and highs are driven into soft diode clipping, keeping lows tight and notes clear. |
+| [`rtal-treble-boost`](plugins/rtal-treble-boost/README.md) | Germanium-style range booster: a single-transistor treble, mid or full-range boost with gentle, lopsided grit. |
 | [`rtal-velvet-fuzz`](plugins/rtal-velvet-fuzz/README.md) | Two-stage fuzz with bias starve, sputter gate, octave fuzz and a scoopable tone stack, using anti-aliased clipping. |
 | [`rtal-split-drive`](plugins/rtal-split-drive/README.md) | Three-band multiband distortion: tight lows, crunchy mids and fizzy highs driven separately. |
 | [`rtal-fold-space`](plugins/rtal-fold-space/README.md) | West-coast wavefolder distortion with anti-aliased sine folding, symmetry, dynamics and resonant colour filter. |
