@@ -109,6 +109,12 @@ option(ENABLE_PRERELEASE_RTAL_DUB_STATION "Enable prerelease rtal-dub-station" O
 option(ENABLE_PRERELEASE_RTAL_GREEN_MILE "Enable prerelease rtal-green-mile" ON)
 option(ENABLE_PRERELEASE_RTAL_TREBLE_BOOST "Enable prerelease rtal-treble-boost" ON)
 option(ENABLE_PRERELEASE_RTAL_LORENZ_DRIFT "Enable prerelease rtal-lorenz-drift" ON)
+option(ENABLE_PRERELEASE_RTAL_HUM_KILLER "Enable prerelease rtal-hum-killer" ON)
+option(ENABLE_PRERELEASE_RTAL_NEEDLE_TUNER "Enable prerelease rtal-needle-tuner" ON)
+option(ENABLE_PRERELEASE_RTAL_HUSH_BAND "Enable prerelease rtal-hush-band" ON)
+option(ENABLE_PRERELEASE_RTAL_TWEED_GLOW "Enable prerelease rtal-tweed-glow" ON)
+option(ENABLE_PRERELEASE_RTAL_SKIP_SCRATCH "Enable prerelease rtal-skip-scratch" ON)
+option(ENABLE_PRERELEASE_RTAL_INVERSE_CATHEDRAL "Enable prerelease rtal-inverse-cathedral" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -204,6 +210,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DUB_STATION prerelease "plugins/rtal-dub-
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_GREEN_MILE prerelease "plugins/rtal-green-mile" "rtal-green-mile")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TREBLE_BOOST prerelease "plugins/rtal-treble-boost" "rtal-treble-boost")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_LORENZ_DRIFT prerelease "plugins/rtal-lorenz-drift" "rtal-lorenz-drift")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HUM_KILLER prerelease "plugins/rtal-hum-killer" "rtal-hum-killer")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_NEEDLE_TUNER prerelease "plugins/rtal-needle-tuner" "rtal-needle-tuner")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HUSH_BAND prerelease "plugins/rtal-hush-band" "rtal-hush-band")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TWEED_GLOW prerelease "plugins/rtal-tweed-glow" "rtal-tweed-glow")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SKIP_SCRATCH prerelease "plugins/rtal-skip-scratch" "rtal-skip-scratch")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_INVERSE_CATHEDRAL prerelease "plugins/rtal-inverse-cathedral" "rtal-inverse-cathedral")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

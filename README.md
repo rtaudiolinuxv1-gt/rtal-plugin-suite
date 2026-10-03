@@ -79,6 +79,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-green-mile
 - rtal-treble-boost
 - rtal-lorenz-drift
+- rtal-hum-killer
+- rtal-needle-tuner
+- rtal-hush-band
+- rtal-tweed-glow
+- rtal-skip-scratch
+- rtal-inverse-cathedral
 
 ## New effects at a glance
 
@@ -98,6 +104,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-loop-lab`](plugins/rtal-loop-lab/README.md) | Stereo looper with record, overdub with fading layers, play/stop, clear, half-speed and reverse playback. |
 | [`rtal-beat-repeat`](plugins/rtal-beat-repeat/README.md) | Performance beat repeat: hold the switch to loop the last slice in time, with decay and falling-pitch glitch. |
 | [`rtal-dub-station`](plugins/rtal-dub-station/README.md) | Dub echo station: throw switch, sweepable loop filter, runaway feedback and a spring tank, all for live dubbing. |
+| [`rtal-skip-scratch`](plugins/rtal-skip-scratch/README.md) | Skipping CD glitch: random jumps back in time, reversed fragments and returns to live, with click-free crossfades. |
 
 ### Reverb & ambience
 
@@ -110,6 +117,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-ice-age`](plugins/rtal-ice-age/README.md) | Infinite-sustain freeze pad: captures each new chord into a frozen tank and crossfades between layers. |
 | [`rtal-sympathetic-strings`](plugins/rtal-sympathetic-strings/README.md) | Bank of tuned sympathetic strings that ring along with your playing in a chosen key and chord. |
 | [`rtal-velvet-hall`](plugins/rtal-velvet-hall/README.md) | Lush modulated hall: eight-line feedback delay network with early reflections, bloom and chorused tail. |
+| [`rtal-inverse-cathedral`](plugins/rtal-inverse-cathedral/README.md) | Reverse reverb: a big hall's tail is cut into windows and played backwards, so every phrase swells up out of nothing. |
 
 ### Modulation
 
@@ -157,6 +165,7 @@ Each plugin has its own README with a description of how it works, every control
 
 | Plugin | What it does |
 | --- | --- |
+| [`rtal-tweed-glow`](plugins/rtal-tweed-glow/README.md) | Tweed-style small amp: two triode stages, simple tone control, saggy push-pull power section and a 1x12 speaker. |
 | [`rtal-green-mile`](plugins/rtal-green-mile/README.md) | Mid-hump overdrive: only the mids and highs are driven into soft diode clipping, keeping lows tight and notes clear. |
 | [`rtal-treble-boost`](plugins/rtal-treble-boost/README.md) | Germanium-style range booster: a single-transistor treble, mid or full-range boost with gentle, lopsided grit. |
 | [`rtal-velvet-fuzz`](plugins/rtal-velvet-fuzz/README.md) | Two-stage fuzz with bias starve, sputter gate, octave fuzz and a scoopable tone stack, using anti-aliased clipping. |
@@ -177,6 +186,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-silence-keeper`](plugins/rtal-silence-keeper/README.md) | High-gain noise gate with hysteresis, hold, lookahead, sidechain filtering and a range control. |
 | [`rtal-attack-sculpt`](plugins/rtal-attack-sculpt/README.md) | Level-independent transient shaper: boost or soften pick attack and sustain separately. |
 | [`rtal-violin-swell`](plugins/rtal-violin-swell/README.md) | Automatic volume swell: every new note fades in from silence, with an optional ambient echo wash. |
+| [`rtal-hush-band`](plugins/rtal-hush-band/README.md) | Three-band downward expander: quietly pushes down hiss and hum in each band without chopping your notes like a gate. |
 
 ### Rhythm & performance
 
@@ -193,6 +203,8 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-air-lift`](plugins/rtal-air-lift/README.md) | Harmonic exciter: generates fresh upper harmonics for air and saturated low harmonics for body. |
 | [`rtal-acoustic-body`](plugins/rtal-acoustic-body/README.md) | Electric-to-acoustic simulator: wooden body resonances, top brightness, pick attack and a small room. |
 | [`rtal-stereo-sculpt`](plugins/rtal-stereo-sculpt/README.md) | Mid/side stereo imager: width, bass mono, side brightness, Haas widening for mono sources and balance. |
+| [`rtal-hum-killer`](plugins/rtal-hum-killer/README.md) | Mains hum and hiss remover: notches 50/60 Hz and its harmonics, plus a dynamic hiss filter for the quiet bits. |
+| [`rtal-needle-tuner`](plugins/rtal-needle-tuner/README.md) | Chromatic tuner: note, octave and cents meters with adjustable reference pitch and a mute switch for silent tuning. |
 ## Configure
 
 Release is the default:
