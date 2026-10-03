@@ -92,6 +92,14 @@ Prerelease plugins available via explicit CMake options:
 - rtal-cloud-bank
 - rtal-human-tune
 - rtal-forge-rig
+- rtal-chord-harmony
+- rtal-poly-synth
+- rtal-groove-lock
+- rtal-auto-expression
+- rtal-spectral-freeze
+- rtal-cross-synth
+- rtal-jam-companion
+- rtal-smart-denoise
 
 ## New effects at a glance
 
@@ -224,6 +232,19 @@ Each plugin has its own README with a description of how it works, every control
 | Plugin | What it does |
 | --- | --- |
 | [`rtal-forge-rig`](plugins/rtal-forge-rig/README.md) | Guitar multi-effects rig: twelve effects in any order, ten preamps, ten power amps, six cabinets and two placeable virtual microphones. |
+
+### Listening & spectral
+
+| Plugin | What it does |
+| --- | --- |
+| [`rtal-chord-harmony`](plugins/rtal-chord-harmony/README.md) | Chord-aware polyphonic harmonizer: recognises the chord you strum and moves every note to other chord tones, so harmonies stay inside the chord. |
+| [`rtal-poly-synth`](plugins/rtal-poly-synth/README.md) | Polyphonic guitar synth: picks the separate notes out of the chords you play and gives each one its own synth voice, up to six at once. |
+| [`rtal-groove-lock`](plugins/rtal-groove-lock/README.md) | Groove-locked effects: hears the tempo of your playing, with no host clock, and locks a rhythmic gate, tremolo, filter sweep and delay to it. |
+| [`rtal-auto-expression`](plugins/rtal-auto-expression/README.md) | Auto-expression: hears how you play (pick force, palm mutes, bends, vibrato, slides, sustain) and lets each technique drive an effect. |
+| [`rtal-spectral-freeze`](plugins/rtal-spectral-freeze/README.md) | Spectral freeze and morph: holds any moment of your playing as an endless frozen spectrum and morphs smoothly between two frozen chords. |
+| [`rtal-cross-synth`](plugins/rtal-cross-synth/README.md) | Cross-synthesis: your guitar takes on the texture of rain, wind, whispers, crackle, bubbles, metal or a second input, while keeping its notes. |
+| [`rtal-jam-companion`](plugins/rtal-jam-companion/README.md) | Jam companion: a drummer and bass player that hear your tempo and chords and play along, starting when you start and stopping when you stop. |
+| [`rtal-smart-denoise`](plugins/rtal-smart-denoise/README.md) | Smart de-noise: learns your rig's hiss and hum by itself and removes it band by band, leaving note tails untouched. |
 ## Configure
 
 Release is the default:
