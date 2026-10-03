@@ -80,6 +80,12 @@ option(ENABLE_PRERELEASE_RTAL_SPLIT_DRIVE "Enable prerelease rtal-split-drive" O
 option(ENABLE_PRERELEASE_RTAL_AM_RADIO "Enable prerelease rtal-am-radio" ON)
 option(ENABLE_PRERELEASE_RTAL_POWER_CUT "Enable prerelease rtal-power-cut" ON)
 option(ENABLE_PRERELEASE_RTAL_STEP_LADDER "Enable prerelease rtal-step-ladder" ON)
+option(ENABLE_PRERELEASE_RTAL_ORBIT_3D "Enable prerelease rtal-orbit-3d" ON)
+option(ENABLE_PRERELEASE_RTAL_ORGAN_DONOR "Enable prerelease rtal-organ-donor" ON)
+option(ENABLE_PRERELEASE_RTAL_DIGITAL_DUST "Enable prerelease rtal-digital-dust" ON)
+option(ENABLE_PRERELEASE_RTAL_FIREFLY_TAPS "Enable prerelease rtal-firefly-taps" ON)
+option(ENABLE_PRERELEASE_RTAL_BRICKWALL "Enable prerelease rtal-brickwall" ON)
+option(ENABLE_PRERELEASE_RTAL_AIR_LIFT "Enable prerelease rtal-air-lift" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -146,6 +152,12 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SPLIT_DRIVE prerelease "plugins/rtal-spli
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_AM_RADIO prerelease "plugins/rtal-am-radio" "rtal-am-radio")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_POWER_CUT prerelease "plugins/rtal-power-cut" "rtal-power-cut")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_STEP_LADDER prerelease "plugins/rtal-step-ladder" "rtal-step-ladder")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ORBIT_3D prerelease "plugins/rtal-orbit-3d" "rtal-orbit-3d")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ORGAN_DONOR prerelease "plugins/rtal-organ-donor" "rtal-organ-donor")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_DIGITAL_DUST prerelease "plugins/rtal-digital-dust" "rtal-digital-dust")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_FIREFLY_TAPS prerelease "plugins/rtal-firefly-taps" "rtal-firefly-taps")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BRICKWALL prerelease "plugins/rtal-brickwall" "rtal-brickwall")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_AIR_LIFT prerelease "plugins/rtal-air-lift" "rtal-air-lift")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

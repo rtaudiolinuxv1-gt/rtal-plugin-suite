@@ -50,6 +50,12 @@ Prerelease plugins available via explicit CMake options:
 - rtal-am-radio
 - rtal-power-cut
 - rtal-step-ladder
+- rtal-orbit-3d
+- rtal-organ-donor
+- rtal-digital-dust
+- rtal-firefly-taps
+- rtal-brickwall
+- rtal-air-lift
 
 ## Configure
 
