@@ -58,8 +58,9 @@ with {
     mono = (inL + inR) * 0.5;
     env = mono : an.amp_follower_ar(0.003, 0.12);
     gate = env > 0.004;
-    trackedHz = mono : fi.lowpass(2, 1300.0) : an.pitchTracker(2, 0.02) : max(40.0) : min(1500.0)
-      : ba.sAndH(gate);
+    // Clamp after the hold: the hold starts at 0 and the note math takes a log.
+    trackedHz = mono : fi.lowpass(2, 1300.0) : an.pitchTracker(2, 0.02) : ba.sAndH(gate)
+      : max(40.0) : min(1500.0);
     // Quantise to the nearest semitone so the synth is in tune, then glide.
     note = 69.0 + 12.0 * log(trackedHz / 440.0) / log(2.0) : floor(_ + 0.5);
     hz = 440.0 * pow(2.0, (note - 69.0) / 12.0) * octaveMul : si.smooth(ba.tau2pole(glideSec));

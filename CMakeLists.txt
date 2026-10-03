@@ -98,6 +98,11 @@ option(ENABLE_PRERELEASE_RTAL_ACOUSTIC_BODY "Enable prerelease rtal-acoustic-bod
 option(ENABLE_PRERELEASE_RTAL_SLIDE_SCOOP "Enable prerelease rtal-slide-scoop" ON)
 option(ENABLE_PRERELEASE_RTAL_STEREO_SCULPT "Enable prerelease rtal-stereo-sculpt" ON)
 option(ENABLE_PRERELEASE_RTAL_TONE_CARVER "Enable prerelease rtal-tone-carver" ON)
+option(ENABLE_PRERELEASE_RTAL_HARMONIC_FORGE "Enable prerelease rtal-harmonic-forge" ON)
+option(ENABLE_PRERELEASE_RTAL_CHORD_VOCODER "Enable prerelease rtal-chord-vocoder" ON)
+option(ENABLE_PRERELEASE_RTAL_ABBEY_ADT "Enable prerelease rtal-abbey-adt" ON)
+option(ENABLE_PRERELEASE_RTAL_BEAT_REPEAT "Enable prerelease rtal-beat-repeat" ON)
+option(ENABLE_PRERELEASE_RTAL_PHOTOCELL_VIBE "Enable prerelease rtal-photocell-vibe" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -182,6 +187,11 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ACOUSTIC_BODY prerelease "plugins/rtal-ac
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_SLIDE_SCOOP prerelease "plugins/rtal-slide-scoop" "rtal-slide-scoop")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_STEREO_SCULPT prerelease "plugins/rtal-stereo-sculpt" "rtal-stereo-sculpt")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_TONE_CARVER prerelease "plugins/rtal-tone-carver" "rtal-tone-carver")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HARMONIC_FORGE prerelease "plugins/rtal-harmonic-forge" "rtal-harmonic-forge")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CHORD_VOCODER prerelease "plugins/rtal-chord-vocoder" "rtal-chord-vocoder")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_ABBEY_ADT prerelease "plugins/rtal-abbey-adt" "rtal-abbey-adt")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_BEAT_REPEAT prerelease "plugins/rtal-beat-repeat" "rtal-beat-repeat")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PHOTOCELL_VIBE prerelease "plugins/rtal-photocell-vibe" "rtal-photocell-vibe")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
