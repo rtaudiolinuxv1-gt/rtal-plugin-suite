@@ -91,6 +91,7 @@ Prerelease plugins available via explicit CMake options:
 - rtal-passing-train
 - rtal-cloud-bank
 - rtal-human-tune
+- rtal-forge-rig
 
 ## New effects at a glance
 
@@ -217,6 +218,12 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-stereo-sculpt`](plugins/rtal-stereo-sculpt/README.md) | Mid/side stereo imager: width, bass mono, side brightness, Haas widening for mono sources and balance. |
 | [`rtal-hum-killer`](plugins/rtal-hum-killer/README.md) | Mains hum and hiss remover: notches 50/60 Hz and its harmonics, plus a dynamic hiss filter for the quiet bits. |
 | [`rtal-needle-tuner`](plugins/rtal-needle-tuner/README.md) | Chromatic tuner: note, octave and cents meters with adjustable reference pitch and a mute switch for silent tuning. |
+
+### Amp & rig
+
+| Plugin | What it does |
+| --- | --- |
+| [`rtal-forge-rig`](plugins/rtal-forge-rig/README.md) | Guitar multi-effects rig: twelve effects in any order, ten preamps, ten power amps, six cabinets and two placeable virtual microphones. |
 ## Configure
 
 Release is the default:

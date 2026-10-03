@@ -121,6 +121,7 @@ option(ENABLE_PRERELEASE_RTAL_PICK_TAMER "Enable prerelease rtal-pick-tamer" ON)
 option(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN "Enable prerelease rtal-passing-train" ON)
 option(ENABLE_PRERELEASE_RTAL_CLOUD_BANK "Enable prerelease rtal-cloud-bank" ON)
 option(ENABLE_PRERELEASE_RTAL_HUMAN_TUNE "Enable prerelease rtal-human-tune" ON)
+option(ENABLE_PRERELEASE_RTAL_FORGE_RIG "Enable prerelease rtal-forge-rig" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -228,6 +229,7 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PICK_TAMER prerelease "plugins/rtal-pick-
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN prerelease "plugins/rtal-passing-train" "rtal-passing-train")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CLOUD_BANK prerelease "plugins/rtal-cloud-bank" "rtal-cloud-bank")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HUMAN_TUNE prerelease "plugins/rtal-human-tune" "rtal-human-tune")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_FORGE_RIG prerelease "plugins/rtal-forge-rig" "rtal-forge-rig")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all

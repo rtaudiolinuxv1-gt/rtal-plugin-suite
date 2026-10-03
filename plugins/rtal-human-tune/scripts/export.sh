@@ -54,7 +54,7 @@ build_lv2() {
         cd "$DIST_DIR/lv2"
         cp "$DSP_FILE" "${STEM}.dsp"
         cp "$ROOT_DIR"/src/*.h .
-        faust2lv2 -keep "${STEM}.dsp"
+        faust2lv2 -keep -ftz 1 "${STEM}.dsp"
         rename_output "${STEM}.lv2/${STEM}.so" "${STEM}.lv2/${APP_ID}.so"
         rename_output "${STEM}.lv2/${STEM}.ttl" "${STEM}.lv2/${APP_ID}.ttl"
         sed -i "s/${STEM}/${APP_ID}/g" "${STEM}.lv2/manifest.ttl" "${STEM}.lv2/${APP_ID}.ttl"
@@ -71,7 +71,7 @@ build_standalone() {
         cd "$DIST_DIR/standalone"
         cp "$DSP_FILE" "${STEM}.dsp"
         cp "$ROOT_DIR"/src/*.h .
-        faust2jack "${STEM}.dsp"
+        faust2jack -ftz 1 "${STEM}.dsp"
         mv "$STEM" "${APP_ID}"
         chmod 755 "${APP_ID}"
         rm -f "${STEM}.dsp" "${STEM}.cpp" ./*.h
@@ -93,7 +93,7 @@ build_vst2() {
         cp "$ROOT_DIR"/src/*.h .
         export SDK="$SDK_DIR"
         export SDKSRC="$SDK_DIR/public.sdk/source/vst2.x"
-        faust2faustvst -keep "${STEM}.dsp"
+        faust2faustvst -keep -ftz 1 "${STEM}.dsp"
         rename_output "${STEM}.so" "${APP_ID}.so"
         if [ -d "${STEM}" ]; then
             mv "${STEM}" "${APP_ID}"

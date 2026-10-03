@@ -52,7 +52,7 @@ for plugin in "${plugins[@]}"; do
         failed+=("$plugin")
         continue
     fi
-    if ! faust -a "$HARNESS" -o "$out/harness.cpp" "$dsp_file" > "$out/faust.log" 2>&1 \
+    if ! faust -ftz 1 -a "$HARNESS" -o "$out/harness.cpp" "$dsp_file" > "$out/faust.log" 2>&1 \
         || ! "$CXX" -O2 -std=c++17 -I/usr/include -I"$(dirname "$dsp_file")" "$out/harness.cpp" -o "$out/harness" > "$out/cxx.log" 2>&1; then
         cat "$out/faust.log" "$out/cxx.log" >&2 2>/dev/null || true
         failed+=("$plugin")
