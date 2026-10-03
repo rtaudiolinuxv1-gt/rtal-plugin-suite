@@ -48,16 +48,23 @@ with {
       step(a) = ba.if(cross, 1.0 - frac, min(a + 1.0, 100000.0));
     };
     period = ba.sAndH(cross, age' + frac) : max(20.0);
-    // Average the per-cycle frequency; Needle Speed trades steadiness for response.
-    // A jump of more than 3% is a new note, so the needle snaps there instead of crawling.
+    // Average the per-cycle pitch; Needle Speed trades steadiness for response.
+    // Only the deviation from an integer anchor note is smoothed: a slow one-pole on
+    // Hz or on a full note number stalls in float32 (increments drop below the float
+    // resolution) and freezes the needle a cent or so off. A jump of more than 0.6
+    // semitone snaps instead of crawling.
     tau = 0.05 + (1.0 - response) * 0.3;
-    snapSmooth(x) = step ~ _
+    rawNote = 69.0 + 12.0 * log(max(ma.SR / period, 20.0) / referenceHz) / log(2.0) : ba.sAndH(playing);
+    anchor = step ~ _
+    with {
+      step(held) = ba.if(abs(rawNote - held) > 0.8, floor(rawNote + 0.5), held);
+    };
+    deviation = rawNote - anchor : step ~ _
     with {
       a = 1.0 - exp(-1.0 / (tau * ma.SR));
-      step(prev) = ba.if(abs(x - prev) > 0.03 * prev, x, prev + (x - prev) * a);
+      step(prev, x) = ba.if(abs(x - prev) > 0.6, x, prev + (x - prev) * a);
     };
-    smoothHz = ma.SR / period : ba.sAndH(playing) : snapSmooth : max(20.0);
-    noteF = 69.0 + 12.0 * log(smoothHz / referenceHz) / log(2.0);
+    noteF = anchor + deviation;
     nearest = floor(noteF + 0.5);
     cents = (noteF - nearest) * 100.0;
     noteIndex = int(nearest + 120.0) % 12;

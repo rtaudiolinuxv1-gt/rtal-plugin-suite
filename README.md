@@ -90,6 +90,7 @@ Prerelease plugins available via explicit CMake options:
 - rtal-pick-tamer
 - rtal-passing-train
 - rtal-cloud-bank
+- rtal-human-tune
 
 ## New effects at a glance
 
@@ -160,6 +161,7 @@ Each plugin has its own README with a description of how it works, every control
 | [`rtal-snap-tune`](plugins/rtal-snap-tune/README.md) | Scale-snapping pitch correction for single-note lines: from gentle tuning help to the hard robotic snap. |
 | [`rtal-gamelan-bells`](plugins/rtal-gamelan-bells/README.md) | Modal resonator: each picked note strikes a tuned bell, gamelan gong, glass or marimba bar that rings at your pitch. |
 | [`rtal-phase-mod`](plugins/rtal-phase-mod/README.md) | FM guitar: audio-rate phase modulation locked to your pitch, for DX-style bells, brass and metallic clangs. |
+| [`rtal-human-tune`](plugins/rtal-human-tune/README.md) | Dynamic pitch correction that keeps the player human: a wandering reference around A440, per-note imperfection and vibrato-safe tracking, or a perfect A440 snap. |
 
 ### Filter & wah
 

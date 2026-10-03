@@ -120,6 +120,7 @@ option(ENABLE_PRERELEASE_RTAL_PHASE_MOD "Enable prerelease rtal-phase-mod" ON)
 option(ENABLE_PRERELEASE_RTAL_PICK_TAMER "Enable prerelease rtal-pick-tamer" ON)
 option(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN "Enable prerelease rtal-passing-train" ON)
 option(ENABLE_PRERELEASE_RTAL_CLOUD_BANK "Enable prerelease rtal-cloud-bank" ON)
+option(ENABLE_PRERELEASE_RTAL_HUMAN_TUNE "Enable prerelease rtal-human-tune" ON)
 
 set(RTAL_GOOD_PLUGINS "")
 set(RTAL_PRERELEASE_PLUGINS "")
@@ -226,6 +227,7 @@ rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PHASE_MOD prerelease "plugins/rtal-phase-
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PICK_TAMER prerelease "plugins/rtal-pick-tamer" "rtal-pick-tamer")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_PASSING_TRAIN prerelease "plugins/rtal-passing-train" "rtal-passing-train")
 rtal_add_plugin(ENABLE_PRERELEASE_RTAL_CLOUD_BANK prerelease "plugins/rtal-cloud-bank" "rtal-cloud-bank")
+rtal_add_plugin(ENABLE_PRERELEASE_RTAL_HUMAN_TUNE prerelease "plugins/rtal-human-tune" "rtal-human-tune")
 
 if(NOT RTAL_SUITE_DEPS)
     add_custom_target(rtal-suite-all
