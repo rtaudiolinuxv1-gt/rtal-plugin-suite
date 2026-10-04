@@ -13,6 +13,7 @@ rtal-forge.tar
     ├── 1x/<widget>/<files>.png
     ├── 2x/<widget>/<files>.png  same names, double size (HiDPI)
     ├── README.md
+    ├── generate.py              the theme creator (re-renders everything and rebuilds the archive)
     ├── preview_dialog.png
     └── contact_sheet.png
 ```
@@ -76,6 +77,8 @@ Beyond the assets, it holds:
 - **No text.** Labels and values are left to your toolkit, using the fonts and colours in `theme.json`.
 
 ## Regenerating
+
+`generate.py` is included in the archive. Run it from the extracted `rtal-forge/` folder: it re-renders the bitmaps in place and writes a fresh `rtal-forge.tar` next to that folder.
 
 ```bash
 pip install pillow numpy

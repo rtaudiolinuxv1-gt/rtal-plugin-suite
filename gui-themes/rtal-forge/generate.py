@@ -1055,7 +1055,7 @@ def theme_metadata(out, accent, accent_hex, scales, manifest, prefix=""):
 
 
 def package(out, meta_for_tar, tar_path):
-    """Pack the theme: <slug>/ holds the bitmaps (and docs), theme.json sits at the root."""
+    """Pack the theme: <slug>/ holds the bitmaps, docs and this generator; theme.json sits at the root."""
     def info(name, size, mode=0o644, is_dir=False):
         ti = tarfile.TarInfo(name)
         ti.size = size
@@ -1075,7 +1075,7 @@ def package(out, meta_for_tar, tar_path):
                 for f in fs:
                     if f.endswith(".png"):
                         files.append(os.path.relpath(os.path.join(dp, f), out))
-        for extra in ("README.md", "preview_dialog.png", "contact_sheet.png"):
+        for extra in ("README.md", "generate.py", "preview_dialog.png", "contact_sheet.png"):
             if os.path.exists(os.path.join(out, extra)):
                 files.append(extra)
         meta = json.dumps(meta_for_tar, indent=2).encode()
