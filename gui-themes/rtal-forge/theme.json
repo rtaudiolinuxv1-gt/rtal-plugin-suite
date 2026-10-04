@@ -1,0 +1,1109 @@
+{
+  "name": "RTAL Forge",
+  "version": "1.0",
+  "author": "rtaudiolinux <rtaudiolinux.v1@gmail.com>",
+  "license": "DOC-1.0",
+  "accent": "#ff9a2e",
+  "conventions": {
+    "units": "Sizes and insets are in 1x pixels; 2x images are exactly double.",
+    "nine_slice": "[left, top, right, bottom] insets kept unscaled when stretching.",
+    "filmstrips": "Vertical, square frames, 101 frames from minimum to maximum.",
+    "knob_sweep": "270 degrees, from -135 (min) to +135 (max), 0 = 12 o'clock.",
+    "bargraphs": "Draw *_off, then *_on clipped to the value (from the bottom or left)."
+  },
+  "faust_widget_map": {
+    "hslider": [
+      "sliders/hslider_track",
+      "sliders/hslider_fill",
+      "sliders/hslider_thumb",
+      "groups/value_display"
+    ],
+    "vslider": [
+      "sliders/vslider_track",
+      "sliders/vslider_fill",
+      "sliders/vslider_thumb",
+      "groups/value_display"
+    ],
+    "hslider/vslider [style:knob]": [
+      "knobs/knob_medium_strip",
+      "knobs/knob_large_strip",
+      "knobs/knob_small_strip",
+      "knobs/knob_medium_bipolar_strip (when min < 0 < max)"
+    ],
+    "nentry": [
+      "entries/nentry_box",
+      "entries/nentry_up_normal",
+      "entries/nentry_down_normal"
+    ],
+    "nentry/hslider [style:menu{...}]": [
+      "menus/menu_box",
+      "menus/menu_arrow",
+      "menus/menu_popup",
+      "menus/menu_item_highlight"
+    ],
+    "nentry/hslider [style:radio{...}]": [
+      "toggles/radio_off",
+      "toggles/radio_on"
+    ],
+    "button": [
+      "buttons/button_normal",
+      "buttons/button_hover",
+      "buttons/button_pressed"
+    ],
+    "checkbox": [
+      "toggles/checkbox_off",
+      "toggles/checkbox_on",
+      "toggles/switch_off (alternative)",
+      "toggles/switch_on (alternative)"
+    ],
+    "hbargraph": [
+      "meters/hbargraph_off",
+      "meters/hbargraph_on"
+    ],
+    "vbargraph": [
+      "meters/vbargraph_off",
+      "meters/vbargraph_on"
+    ],
+    "[style:led] bargraph": [
+      "leds/led_*_off",
+      "leds/led_*_on"
+    ],
+    "hgroup / vgroup": [
+      "groups/group_frame",
+      "groups/label_plate"
+    ],
+    "tgroup": [
+      "groups/tab_normal",
+      "groups/tab_active",
+      "groups/group_frame"
+    ],
+    "dialog background": [
+      "background/panel_default",
+      "background/panel_tile"
+    ]
+  },
+  "assets": {
+    "background/panel_default": {
+      "type": "background",
+      "note": "Full panel 1200x800 (1x) with header band (44 px), vignette and corner screws.",
+      "files": {
+        "1x": "1x/background/panel_default.png",
+        "2x": "2x/background/panel_default.png"
+      },
+      "size": {
+        "1x": [
+          1200,
+          800
+        ],
+        "2x": [
+          2400,
+          1600
+        ]
+      }
+    },
+    "background/panel_tile": {
+      "type": "background-tile",
+      "note": "Seamless brushed-metal tile for panels of any size.",
+      "files": {
+        "1x": "1x/background/panel_tile.png",
+        "2x": "2x/background/panel_tile.png"
+      },
+      "size": {
+        "1x": [
+          256,
+          256
+        ],
+        "2x": [
+          512,
+          512
+        ]
+      }
+    },
+    "knobs/knob_large_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        80,
+        80
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knobs/knob_large_strip.png",
+        "2x": "2x/knobs/knob_large_strip.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          8080
+        ],
+        "2x": [
+          160,
+          16160
+        ]
+      }
+    },
+    "knobs/knob_large_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knobs/knob_large_base.png",
+        "2x": "2x/knobs/knob_large_base.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          80
+        ],
+        "2x": [
+          160,
+          160
+        ]
+      }
+    },
+    "knobs/knob_large_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knobs/knob_large_pointer.png",
+        "2x": "2x/knobs/knob_large_pointer.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          80
+        ],
+        "2x": [
+          160,
+          160
+        ]
+      }
+    },
+    "knobs/knob_medium_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        56,
+        56
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knobs/knob_medium_strip.png",
+        "2x": "2x/knobs/knob_medium_strip.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          5656
+        ],
+        "2x": [
+          112,
+          11312
+        ]
+      }
+    },
+    "knobs/knob_medium_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knobs/knob_medium_base.png",
+        "2x": "2x/knobs/knob_medium_base.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          56
+        ],
+        "2x": [
+          112,
+          112
+        ]
+      }
+    },
+    "knobs/knob_medium_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knobs/knob_medium_pointer.png",
+        "2x": "2x/knobs/knob_medium_pointer.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          56
+        ],
+        "2x": [
+          112,
+          112
+        ]
+      }
+    },
+    "knobs/knob_medium_bipolar_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        56,
+        56
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Value arc grows from 12 o'clock: for pan, detune and other +/- ranges.",
+      "files": {
+        "1x": "1x/knobs/knob_medium_bipolar_strip.png",
+        "2x": "2x/knobs/knob_medium_bipolar_strip.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          5656
+        ],
+        "2x": [
+          112,
+          11312
+        ]
+      }
+    },
+    "knobs/knob_small_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        36,
+        36
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knobs/knob_small_strip.png",
+        "2x": "2x/knobs/knob_small_strip.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          3636
+        ],
+        "2x": [
+          72,
+          7272
+        ]
+      }
+    },
+    "knobs/knob_small_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knobs/knob_small_base.png",
+        "2x": "2x/knobs/knob_small_base.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          36
+        ],
+        "2x": [
+          72,
+          72
+        ]
+      }
+    },
+    "knobs/knob_small_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knobs/knob_small_pointer.png",
+        "2x": "2x/knobs/knob_small_pointer.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          36
+        ],
+        "2x": [
+          72,
+          72
+        ]
+      }
+    },
+    "sliders/vslider_track": {
+      "type": "slider-track",
+      "nine_slice": [
+        0,
+        12,
+        0,
+        12
+      ],
+      "note": "Stretch vertically between the insets.",
+      "files": {
+        "1x": "1x/sliders/vslider_track.png",
+        "2x": "2x/sliders/vslider_track.png"
+      },
+      "size": {
+        "1x": [
+          28,
+          160
+        ],
+        "2x": [
+          56,
+          320
+        ]
+      }
+    },
+    "sliders/vslider_fill": {
+      "type": "slider-fill",
+      "nine_slice": [
+        0,
+        12,
+        0,
+        12
+      ],
+      "note": "Accent fill: clip from the bottom to the value.",
+      "files": {
+        "1x": "1x/sliders/vslider_fill.png",
+        "2x": "2x/sliders/vslider_fill.png"
+      },
+      "size": {
+        "1x": [
+          28,
+          160
+        ],
+        "2x": [
+          56,
+          320
+        ]
+      }
+    },
+    "sliders/vslider_thumb": {
+      "type": "slider-thumb",
+      "hotspot": [
+        17,
+        9
+      ],
+      "files": {
+        "1x": "1x/sliders/vslider_thumb.png",
+        "2x": "2x/sliders/vslider_thumb.png"
+      },
+      "size": {
+        "1x": [
+          34,
+          18
+        ],
+        "2x": [
+          68,
+          36
+        ]
+      }
+    },
+    "sliders/hslider_track": {
+      "type": "slider-track",
+      "nine_slice": [
+        12,
+        0,
+        12,
+        0
+      ],
+      "note": "Stretch horizontally between the insets.",
+      "files": {
+        "1x": "1x/sliders/hslider_track.png",
+        "2x": "2x/sliders/hslider_track.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          28
+        ],
+        "2x": [
+          320,
+          56
+        ]
+      }
+    },
+    "sliders/hslider_fill": {
+      "type": "slider-fill",
+      "nine_slice": [
+        12,
+        0,
+        12,
+        0
+      ],
+      "note": "Accent fill: clip from the left to the value.",
+      "files": {
+        "1x": "1x/sliders/hslider_fill.png",
+        "2x": "2x/sliders/hslider_fill.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          28
+        ],
+        "2x": [
+          320,
+          56
+        ]
+      }
+    },
+    "sliders/hslider_thumb": {
+      "type": "slider-thumb",
+      "hotspot": [
+        9,
+        17
+      ],
+      "files": {
+        "1x": "1x/sliders/hslider_thumb.png",
+        "2x": "2x/sliders/hslider_thumb.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          34
+        ],
+        "2x": [
+          36,
+          68
+        ]
+      }
+    },
+    "buttons/button_normal": {
+      "type": "button",
+      "nine_slice": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "files": {
+        "1x": "1x/buttons/button_normal.png",
+        "2x": "2x/buttons/button_normal.png"
+      },
+      "size": {
+        "1x": [
+          96,
+          30
+        ],
+        "2x": [
+          192,
+          60
+        ]
+      }
+    },
+    "buttons/button_hover": {
+      "type": "button",
+      "nine_slice": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "files": {
+        "1x": "1x/buttons/button_hover.png",
+        "2x": "2x/buttons/button_hover.png"
+      },
+      "size": {
+        "1x": [
+          96,
+          30
+        ],
+        "2x": [
+          192,
+          60
+        ]
+      }
+    },
+    "buttons/button_pressed": {
+      "type": "button",
+      "nine_slice": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "files": {
+        "1x": "1x/buttons/button_pressed.png",
+        "2x": "2x/buttons/button_pressed.png"
+      },
+      "size": {
+        "1x": [
+          96,
+          30
+        ],
+        "2x": [
+          192,
+          60
+        ]
+      }
+    },
+    "toggles/checkbox_off": {
+      "type": "checkbox",
+      "files": {
+        "1x": "1x/toggles/checkbox_off.png",
+        "2x": "2x/toggles/checkbox_off.png"
+      },
+      "size": {
+        "1x": [
+          20,
+          20
+        ],
+        "2x": [
+          40,
+          40
+        ]
+      }
+    },
+    "toggles/switch_off": {
+      "type": "switch",
+      "note": "Alternative look for Faust checkboxes.",
+      "files": {
+        "1x": "1x/toggles/switch_off.png",
+        "2x": "2x/toggles/switch_off.png"
+      },
+      "size": {
+        "1x": [
+          40,
+          22
+        ],
+        "2x": [
+          80,
+          44
+        ]
+      }
+    },
+    "toggles/radio_off": {
+      "type": "radio",
+      "files": {
+        "1x": "1x/toggles/radio_off.png",
+        "2x": "2x/toggles/radio_off.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          18
+        ],
+        "2x": [
+          36,
+          36
+        ]
+      }
+    },
+    "toggles/checkbox_on": {
+      "type": "checkbox",
+      "files": {
+        "1x": "1x/toggles/checkbox_on.png",
+        "2x": "2x/toggles/checkbox_on.png"
+      },
+      "size": {
+        "1x": [
+          20,
+          20
+        ],
+        "2x": [
+          40,
+          40
+        ]
+      }
+    },
+    "toggles/switch_on": {
+      "type": "switch",
+      "note": "Alternative look for Faust checkboxes.",
+      "files": {
+        "1x": "1x/toggles/switch_on.png",
+        "2x": "2x/toggles/switch_on.png"
+      },
+      "size": {
+        "1x": [
+          40,
+          22
+        ],
+        "2x": [
+          80,
+          44
+        ]
+      }
+    },
+    "toggles/radio_on": {
+      "type": "radio",
+      "files": {
+        "1x": "1x/toggles/radio_on.png",
+        "2x": "2x/toggles/radio_on.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          18
+        ],
+        "2x": [
+          36,
+          36
+        ]
+      }
+    },
+    "leds/led_amber_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_amber_off.png",
+        "2x": "2x/leds/led_amber_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "leds/led_amber_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_amber_on.png",
+        "2x": "2x/leds/led_amber_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "leds/led_green_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_green_off.png",
+        "2x": "2x/leds/led_green_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "leds/led_green_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_green_on.png",
+        "2x": "2x/leds/led_green_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "leds/led_red_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_red_off.png",
+        "2x": "2x/leds/led_red_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "leds/led_red_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/leds/led_red_on.png",
+        "2x": "2x/leds/led_red_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      }
+    },
+    "entries/nentry_box": {
+      "type": "nentry-box",
+      "nine_slice": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "files": {
+        "1x": "1x/entries/nentry_box.png",
+        "2x": "2x/entries/nentry_box.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          24
+        ],
+        "2x": [
+          160,
+          48
+        ]
+      }
+    },
+    "entries/nentry_up_normal": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/entries/nentry_up_normal.png",
+        "2x": "2x/entries/nentry_up_normal.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      }
+    },
+    "entries/nentry_up_pressed": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/entries/nentry_up_pressed.png",
+        "2x": "2x/entries/nentry_up_pressed.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      }
+    },
+    "entries/nentry_down_normal": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/entries/nentry_down_normal.png",
+        "2x": "2x/entries/nentry_down_normal.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      }
+    },
+    "entries/nentry_down_pressed": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/entries/nentry_down_pressed.png",
+        "2x": "2x/entries/nentry_down_pressed.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      }
+    },
+    "menus/menu_box": {
+      "type": "menu-box",
+      "nine_slice": [
+        8,
+        6,
+        30,
+        6
+      ],
+      "note": "Right 24 px is the arrow well; keep it in the right inset.",
+      "files": {
+        "1x": "1x/menus/menu_box.png",
+        "2x": "2x/menus/menu_box.png"
+      },
+      "size": {
+        "1x": [
+          130,
+          24
+        ],
+        "2x": [
+          260,
+          48
+        ]
+      }
+    },
+    "menus/menu_arrow": {
+      "type": "menu-arrow",
+      "files": {
+        "1x": "1x/menus/menu_arrow.png",
+        "2x": "2x/menus/menu_arrow.png"
+      },
+      "size": {
+        "1x": [
+          10,
+          7
+        ],
+        "2x": [
+          20,
+          14
+        ]
+      }
+    },
+    "menus/menu_popup": {
+      "type": "menu-popup",
+      "nine_slice": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "files": {
+        "1x": "1x/menus/menu_popup.png",
+        "2x": "2x/menus/menu_popup.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          120
+        ],
+        "2x": [
+          320,
+          240
+        ]
+      }
+    },
+    "menus/menu_item_highlight": {
+      "type": "menu-highlight",
+      "nine_slice": [
+        6,
+        4,
+        6,
+        4
+      ],
+      "files": {
+        "1x": "1x/menus/menu_item_highlight.png",
+        "2x": "2x/menus/menu_item_highlight.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          22
+        ],
+        "2x": [
+          320,
+          44
+        ]
+      }
+    },
+    "meters/vbargraph_off": {
+      "type": "bargraph",
+      "note": "Unlit LED column; draw vbargraph_on clipped from the bottom to the value.",
+      "files": {
+        "1x": "1x/meters/vbargraph_off.png",
+        "2x": "2x/meters/vbargraph_off.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          160
+        ],
+        "2x": [
+          28,
+          320
+        ]
+      }
+    },
+    "meters/vbargraph_on": {
+      "type": "bargraph",
+      "files": {
+        "1x": "1x/meters/vbargraph_on.png",
+        "2x": "2x/meters/vbargraph_on.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          160
+        ],
+        "2x": [
+          28,
+          320
+        ]
+      }
+    },
+    "meters/hbargraph_off": {
+      "type": "bargraph",
+      "note": "Unlit LED row; draw hbargraph_on clipped from the left to the value.",
+      "files": {
+        "1x": "1x/meters/hbargraph_off.png",
+        "2x": "2x/meters/hbargraph_off.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          14
+        ],
+        "2x": [
+          320,
+          28
+        ]
+      }
+    },
+    "meters/hbargraph_on": {
+      "type": "bargraph",
+      "files": {
+        "1x": "1x/meters/hbargraph_on.png",
+        "2x": "2x/meters/hbargraph_on.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          14
+        ],
+        "2x": [
+          320,
+          28
+        ]
+      }
+    },
+    "groups/group_frame": {
+      "type": "group-frame",
+      "nine_slice": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "note": "hgroup / vgroup panel.",
+      "files": {
+        "1x": "1x/groups/group_frame.png",
+        "2x": "2x/groups/group_frame.png"
+      },
+      "size": {
+        "1x": [
+          220,
+          160
+        ],
+        "2x": [
+          440,
+          320
+        ]
+      }
+    },
+    "groups/label_plate": {
+      "type": "label-plate",
+      "nine_slice": [
+        9,
+        0,
+        9,
+        0
+      ],
+      "files": {
+        "1x": "1x/groups/label_plate.png",
+        "2x": "2x/groups/label_plate.png"
+      },
+      "size": {
+        "1x": [
+          120,
+          18
+        ],
+        "2x": [
+          240,
+          36
+        ]
+      }
+    },
+    "groups/tab_normal": {
+      "type": "tab",
+      "nine_slice": [
+        8,
+        6,
+        8,
+        0
+      ],
+      "files": {
+        "1x": "1x/groups/tab_normal.png",
+        "2x": "2x/groups/tab_normal.png"
+      },
+      "size": {
+        "1x": [
+          110,
+          26
+        ],
+        "2x": [
+          220,
+          52
+        ]
+      }
+    },
+    "groups/tab_active": {
+      "type": "tab",
+      "nine_slice": [
+        8,
+        6,
+        8,
+        0
+      ],
+      "files": {
+        "1x": "1x/groups/tab_active.png",
+        "2x": "2x/groups/tab_active.png"
+      },
+      "size": {
+        "1x": [
+          110,
+          26
+        ],
+        "2x": [
+          220,
+          52
+        ]
+      }
+    },
+    "groups/value_display": {
+      "type": "value-display",
+      "nine_slice": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "note": "Numeric readout under knobs and sliders.",
+      "files": {
+        "1x": "1x/groups/value_display.png",
+        "2x": "2x/groups/value_display.png"
+      },
+      "size": {
+        "1x": [
+          64,
+          18
+        ],
+        "2x": [
+          128,
+          36
+        ]
+      }
+    }
+  }
+}
