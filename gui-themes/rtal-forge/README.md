@@ -76,15 +76,35 @@ Beyond the assets, it holds:
 - **Bargraphs and slider fills.** Draw `_off` (or the track), then `_on` (or the fill) clipped to the value: from the bottom for vertical, from the left for horizontal.
 - **No text.** Labels and values are left to your toolkit, using the fonts and colours in `theme.json`.
 
-## Regenerating
+## Regenerating and repurposing
 
-`generate.py` is included in the archive. Run it from the extracted `rtal-forge/` folder: it re-renders the bitmaps in place and writes a fresh `rtal-forge.tar` next to that folder.
+`generate.py` is included in the archive. Every run writes a theme folder plus a `<slug>.tar` next to it, where the slug is the theme name in lowercase with hyphens ("Midnight Blue" becomes `midnight-blue`). By default a new name gets its own folder beside this one; `--out` puts it anywhere. Install the dependencies with `pip install pillow numpy`.
+
+**Render**, which draws every bitmap from scratch:
 
 ```bash
-pip install pillow numpy
-python3 generate.py                   # amber accent, 1x and 2x, writes ../rtal-forge.tar
-python3 generate.py --accent 3ec8ff   # cyan accent
-python3 generate.py --scales 1,2,3    # add a 3x set
+python3 generate.py                                        # RTAL Forge, amber, 1x and 2x
+python3 generate.py --name "Midnight Blue" --accent 3ec8ff # a new theme in a new colour
+python3 generate.py --scales 1,2,3                         # add a 3x set
 ```
+
+**Repurpose**, which reuses existing bitmaps under a new identity in a few seconds:
+
+```bash
+python3 generate.py --name "Stage Black" --reuse                     # bitmaps from this folder
+python3 generate.py --name "Stage Black" --reuse rtal-forge.tar      # from a theme archive
+python3 generate.py --name "Stage Black" --reuse ../midnight-blue    # from another theme folder
+```
+
+When repurposing:
+- The bitmaps are copied byte for byte.
+- The colours, fonts, layout and widget map are kept from the source theme.
+- `theme.json` records the source under `derived_from`.
+- The README, preview images, checksums and archive are rebuilt with the new name.
+
+**Identity options**, for either mode:
+- `--author` and `--version` set those metadata fields.
+- `--description` sets the one-line description.
+- `--no-tar` skips the archive.
 
 (c) 2026 rtaudiolinux <rtaudiolinux.v1@gmail.com> - DOC-1.0

@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
-"""Render the "RTAL Forge" bitmap theme for Faust-style plugin dialogs.
+"""Render or repurpose a bitmap theme for Faust-style plugin dialogs.
 
 Every image that replaces a standard Faust UI widget is drawn procedurally:
 knobs (filmstrips and separate base/pointer layers), sliders, buttons,
 checkboxes and switches, radio buttons, LEDs, numeric entries, menus,
 bargraph meters, group frames, tabs and the panel background.
 
-    python3 generate.py                  # default amber accent, 1x and 2x
-    python3 generate.py --accent 3ec8ff  # recolour the accent
-    python3 generate.py --out mytheme    # write somewhere else
+Render a theme (the default is "RTAL Forge", written into this folder):
 
-    python3 generate.py --no-tar         # skip writing ../rtal-forge.tar
+    python3 generate.py                               # RTAL Forge, amber, 1x and 2x
+    python3 generate.py --name "Midnight Blue" --accent 3ec8ff
+    python3 generate.py --scales 1,2,3                # add a 3x set
+    python3 generate.py --no-tar                      # skip the .tar archive
 
-The finished theme is also packed into <theme-slug>.tar next to this folder:
-the bitmaps sit in a folder named after the theme, and a theme.json metadata
-file at the archive root tells a toolkit how to rebuild every widget.
+Repurpose existing bitmaps under a new theme name, without re-rendering:
+
+    python3 generate.py --name "Stage Black" --reuse                 # from this folder
+    python3 generate.py --name "Stage Black" --reuse rtal-forge.tar  # from an archive
+    python3 generate.py --name "Stage Black" --reuse ../some-theme   # from a theme folder
+
+A theme named "Midnight Blue" gets the slug "midnight-blue": it is written to
+a folder of that name (next to this one, unless --out says otherwise) and
+packed into midnight-blue.tar next to that folder. Inside the archive the
+bitmaps sit in midnight-blue/ and a theme.json at the archive root tells a
+toolkit how to rebuild every widget. --author, --version and --description
+set the rest of the theme's identity.
 
 Drawing happens at 4x supersampling on premultiplied float RGBA, then each
 image is box-filtered down, which gives clean anti-aliased edges.
@@ -29,7 +39,10 @@ import io
 import json
 import math
 import os
+import re
+import shutil
 import tarfile
+import tempfile
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -703,7 +716,7 @@ def build(out, accent, scale, manifest):
          nine_slice=[5, 5, 5, 5], note="Numeric readout under knobs and sliders.")
 
 
-def preview(out, accent):
+def preview(out, accent, title="RTAL Forge"):
     """Compose a mock plugin dialog from the 1x assets, plus a contact sheet."""
     a = lambda rel: Image.open(os.path.join(out, "1x", rel)).convert("RGBA")
     font = lambda s, bold=False: ImageFont.truetype(
@@ -714,8 +727,9 @@ def preview(out, accent):
     acc = tuple(int(v * 255) for v in accent)
     txt = (220, 222, 225)
     dim = (150, 154, 160)
-    dr.text((26, 12), "RTAL FORGE", font=font(18, True), fill=acc)
-    dr.text((160, 16), "theme preview", font=font(13), fill=dim)
+    f18 = font(18, True)
+    dr.text((26, 12), title.upper(), font=f18, fill=acc)
+    dr.text((26 + dr.textlength(title.upper(), font=f18) + 12, 16), "theme preview", font=font(13), fill=dim)
 
     def nine(img_rel, w, h, ins):
         src = a(img_rel)
@@ -880,8 +894,22 @@ def preview(out, accent):
     big.save(os.path.join(out, "contact_sheet.png"), optimize=True)
 
 
-THEME_NAME = "RTAL Forge"
-THEME_SLUG = "rtal-forge"
+DEFAULT_IDENTITY = {
+    "name": "RTAL Forge",
+    "version": "1.0",
+    "author": "rtaudiolinux <rtaudiolinux.v1@gmail.com>",
+    "license": "DOC-1.0",
+    "description": "Dark brushed-metal panel, aluminium knobs with a value arc, {accent} accent. "
+                   "Replaces the standard toolkit graphics of a Faust DSP dialog.",
+}
+
+
+def slugify(name):
+    """Theme name -> folder/archive name: lowercase words joined by hyphens."""
+    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    if not slug:
+        raise SystemExit(f"theme name {name!r} has no usable characters")
+    return slug
 
 # How a toolkit should draw each asset type (stored with every asset).
 DRAW = {
@@ -923,7 +951,7 @@ def state_of(key):
     return None
 
 
-def theme_metadata(out, accent, accent_hex, scales, manifest, prefix=""):
+def theme_metadata(out, identity, accent_hex, scales, manifest, prefix="", inherit=None):
     """Metadata describing every asset well enough for a toolkit to rebuild the theme."""
     assets = {}
     for key, entry in sorted(manifest.items()):
@@ -941,14 +969,14 @@ def theme_metadata(out, accent, accent_hex, scales, manifest, prefix=""):
             e["sweep_start_degrees"] = -KNOB_SWEEP / 2
             e["sweep_degrees"] = KNOB_SWEEP
         assets[key] = e
-    return {
+    meta = {
         "schema": "rtal-bitmap-theme/1",
-        "name": THEME_NAME,
-        "slug": THEME_SLUG,
-        "version": "1.0",
-        "author": "rtaudiolinux <rtaudiolinux.v1@gmail.com>",
-        "license": "DOC-1.0",
-        "description": "Dark brushed-metal panel, aluminium knobs with a value arc, amber accent. Replaces the standard toolkit graphics of a Faust DSP dialog.",
+        "name": identity["name"],
+        "slug": identity["slug"],
+        "version": identity["version"],
+        "author": identity["author"],
+        "license": identity["license"],
+        "description": identity["description"],
         "root": prefix.rstrip("/") or ".",
         "scales": scales,
         "default_scale": 1,
@@ -1052,9 +1080,19 @@ def theme_metadata(out, accent, accent_hex, scales, manifest, prefix=""):
         "asset_keys": "Widget entries name asset keys; look them up in 'assets' and pick 'files' for the scale in use.",
         "assets": assets,
     }
+    if inherit:
+        # Repurposed theme: keep the source's look-and-feel description.
+        for k in ("colors", "fonts", "layout", "widgets", "naming", "conventions"):
+            if k in inherit:
+                meta[k] = inherit[k]
+        if inherit.get("slug") != identity["slug"]:
+            meta["derived_from"] = {k: inherit.get(k) for k in ("name", "slug", "version")}
+        elif "derived_from" in inherit:  # repackaged under its own name: keep its lineage
+            meta["derived_from"] = inherit["derived_from"]
+    return meta
 
 
-def package(out, meta_for_tar, tar_path):
+def package(out, meta_for_tar, tar_path, slug):
     """Pack the theme: <slug>/ holds the bitmaps, docs and this generator; theme.json sits at the root."""
     def info(name, size, mode=0o644, is_dir=False):
         ti = tarfile.TarInfo(name)
@@ -1081,7 +1119,7 @@ def package(out, meta_for_tar, tar_path):
         meta = json.dumps(meta_for_tar, indent=2).encode()
         tar.addfile(info("theme.json", len(meta)), io.BytesIO(meta))
         for rel in sorted(files):
-            arc = f"{THEME_SLUG}/{rel}"
+            arc = f"{slug}/{rel}"
             parts = arc.split("/")[:-1]
             for i in range(1, len(parts) + 1):
                 dname = "/".join(parts[:i])
@@ -1093,28 +1131,147 @@ def package(out, meta_for_tar, tar_path):
             tar.addfile(info(arc, len(data)), io.BytesIO(data))
 
 
+
+def load_theme(source):
+    """Open an existing theme (folder or .tar). Returns (base_dir, metadata, tempdir_or_None)."""
+    tmp = None
+    if os.path.isfile(source) and tarfile.is_tarfile(source):
+        tmp = tempfile.mkdtemp(prefix="theme-")
+        with tarfile.open(source) as tar:
+            for m in tar.getmembers():  # refuse absolute paths and '..' entries
+                if m.name.startswith("/") or ".." in m.name.split("/"):
+                    raise SystemExit(f"unsafe path in archive: {m.name}")
+            tar.extractall(tmp)
+        base = tmp
+    elif os.path.isdir(source):
+        base = source
+    else:
+        raise SystemExit(f"--reuse source not found: {source}")
+    path = os.path.join(base, "theme.json")
+    if not os.path.exists(path):
+        # An extracted archive keeps theme.json beside the theme folder.
+        parent = os.path.dirname(os.path.abspath(base))
+        up = os.path.join(parent, "theme.json")
+        if os.path.exists(up):
+            with open(up) as f:
+                if json.load(f).get("root") == os.path.basename(os.path.abspath(base)):
+                    base, path = parent, up
+    if not os.path.exists(path):
+        raise SystemExit(f"no theme.json in {source} (or beside it)")
+    with open(path) as f:
+        meta = json.load(f)
+    return base, meta, tmp
+
+
+def reuse_theme(source, out):
+    """Copy the bitmaps of an existing theme into 'out'. Returns (manifest, accent_hex, scales, source_meta)."""
+    base, meta, tmp = load_theme(source)
+    root = meta.get("root", ".")
+    strip = "" if root in (".", "") else root.rstrip("/") + "/"
+    manifest = {}
+    try:
+        for key, entry in meta["assets"].items():
+            # Keep the key order; fields recomputed by theme_metadata are dropped.
+            drop = {"sha256", "draw", "state", "sweep_start_degrees"}
+            if entry["type"] != "knob-filmstrip":
+                drop.add("sweep_degrees")  # only filmstrips carry it from rendering
+            e = {k: v for k, v in entry.items() if k not in drop}
+            files = {}
+            for sc, path in entry["files"].items():
+                rel = path[len(strip):] if path.startswith(strip) else path
+                src = os.path.join(base, path)
+                dst = os.path.join(out, rel)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                if not (os.path.exists(dst) and os.path.samefile(src, dst)):
+                    shutil.copyfile(src, dst)
+                files[sc] = rel
+            e["files"] = files
+            manifest[key] = e
+    finally:
+        if tmp:
+            shutil.rmtree(tmp, ignore_errors=True)
+    accent_hex = meta.get("colors", {}).get("accent", "#ff9a2e").lstrip("#")
+    scales = meta.get("scales") or sorted({int(sc[:-1]) for a in manifest.values() for sc in a["files"]})
+    return manifest, accent_hex, scales, meta
+
+
+def accent_words(accent_hex):
+    return "amber" if accent_hex.lower().lstrip("#") == "ff9a2e" else "#" + accent_hex.lower().lstrip("#")
+
+
+def write_docs(out, identity, accent_hex):
+    """Give the theme folder its own README and a copy of this generator."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    me = os.path.abspath(__file__)
+    target = os.path.join(out, "generate.py")
+    if not (os.path.exists(target) and os.path.samefile(me, target)):
+        shutil.copyfile(me, target)
+    readme_src = os.path.join(here, "README.md")
+    readme_dst = os.path.join(out, "README.md")
+    if os.path.exists(readme_src) and not (os.path.exists(readme_dst) and os.path.samefile(readme_src, readme_dst)):
+        text = open(readme_src).read()
+        src_name = DEFAULT_IDENTITY["name"]
+        text = text.replace(src_name, identity["name"]).replace(slugify(src_name), identity["slug"])
+        text = text.replace("an amber accent", "a " + accent_words(accent_hex) + " accent")
+        with open(readme_dst, "w") as f:
+            f.write(text)
+
+
 def main():
+    here = os.path.dirname(os.path.abspath(__file__))
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--out", default=os.path.dirname(os.path.abspath(__file__)))
-    ap.add_argument("--accent", default="ff9a2e", help="accent colour as hex RGB (default ff9a2e, amber)")
-    ap.add_argument("--scales", default="1,2", help="comma-separated scale factors (default 1,2)")
+    ap.add_argument("--name", default=DEFAULT_IDENTITY["name"], help='theme name (default "RTAL Forge")')
+    ap.add_argument("--author", default=None, help="theme author for the metadata")
+    ap.add_argument("--version", default=None, help="theme version for the metadata")
+    ap.add_argument("--description", default=None, help="one-line theme description for the metadata")
+    ap.add_argument("--out", default=None,
+                    help="theme folder to write (default: a folder named after the theme, next to this one)")
+    ap.add_argument("--reuse", nargs="?", const=here, default=None, metavar="SOURCE",
+                    help="repurpose the bitmaps of an existing theme (folder or .tar; default this folder) "
+                         "instead of rendering")
+    ap.add_argument("--accent", default="ff9a2e", help="accent colour as hex RGB when rendering (default ff9a2e, amber)")
+    ap.add_argument("--scales", default="1,2", help="comma-separated scale factors when rendering (default 1,2)")
     ap.add_argument("--no-tar", action="store_true", help="do not write the <slug>.tar archive")
     args = ap.parse_args()
-    accent = hex_rgb(args.accent)
-    manifest = {}
-    for s in [int(v) for v in args.scales.split(",")]:
-        build(args.out, accent, s, manifest)
-        print(f"rendered {s}x")
-    scales = [int(v) for v in args.scales.split(",")]
-    # Previews first, so they can travel in the archive.
-    preview(args.out, accent)
+
+    slug = slugify(args.name)
+    if args.out is None:
+        args.out = here if os.path.basename(here) == slug else os.path.join(os.path.dirname(here), slug)
+    os.makedirs(args.out, exist_ok=True)
+
+    inherit = None
+    if args.reuse:
+        manifest, accent_hex, scales, inherit = reuse_theme(args.reuse, args.out)
+        print(f"reused {len(manifest)} assets from {inherit.get('name', args.reuse)}")
+        base_identity = {k: inherit.get(k, DEFAULT_IDENTITY[k]) for k in DEFAULT_IDENTITY}
+    else:
+        accent_hex = args.accent.lstrip("#")
+        scales = [int(v) for v in args.scales.split(",")]
+        manifest = {}
+        for sc in scales:
+            build(args.out, hex_rgb(accent_hex), sc, manifest)
+            print(f"rendered {sc}x")
+        base_identity = dict(DEFAULT_IDENTITY)
+    identity = dict(base_identity)
+    identity["name"] = args.name
+    identity["slug"] = slug
+    for k in ("author", "version", "description"):
+        if getattr(args, k) is not None:
+            identity[k] = getattr(args, k)
+    identity["description"] = identity["description"].replace("{accent}", accent_words(accent_hex))
+
+    accent = hex_rgb(accent_hex)
+    # Previews (titled with the theme name) and docs first, so they travel in the archive.
+    preview(args.out, accent, identity["name"])
+    write_docs(args.out, identity, accent_hex)
     with open(os.path.join(args.out, "theme.json"), "w") as f:
-        json.dump(theme_metadata(args.out, accent, args.accent, scales, manifest), f, indent=2)
+        json.dump(theme_metadata(args.out, identity, accent_hex, scales, manifest, inherit=inherit), f, indent=2)
+    print(f"wrote {args.out}: theme.json, preview_dialog.png, contact_sheet.png, README.md, generate.py")
     if not args.no_tar:
-        tar_path = os.path.join(os.path.dirname(os.path.abspath(args.out)), THEME_SLUG + ".tar")
-        package(args.out, theme_metadata(args.out, accent, args.accent, scales, manifest, prefix=THEME_SLUG + "/"), tar_path)
+        tar_path = os.path.join(os.path.dirname(os.path.abspath(args.out)), slug + ".tar")
+        meta = theme_metadata(args.out, identity, accent_hex, scales, manifest, prefix=slug + "/", inherit=inherit)
+        package(args.out, meta, tar_path, slug)
         print("wrote", tar_path)
-    print("wrote theme.json, preview_dialog.png, contact_sheet.png")
 
 
 if __name__ == "__main__":
