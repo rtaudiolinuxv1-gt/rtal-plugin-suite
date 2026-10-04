@@ -1,94 +1,352 @@
 {
+  "schema": "rtal-bitmap-theme/1",
   "name": "RTAL Forge",
+  "slug": "rtal-forge",
   "version": "1.0",
   "author": "rtaudiolinux <rtaudiolinux.v1@gmail.com>",
   "license": "DOC-1.0",
-  "accent": "#ff9a2e",
-  "conventions": {
-    "units": "Sizes and insets are in 1x pixels; 2x images are exactly double.",
-    "nine_slice": "[left, top, right, bottom] insets kept unscaled when stretching.",
-    "filmstrips": "Vertical, square frames, 101 frames from minimum to maximum.",
-    "knob_sweep": "270 degrees, from -135 (min) to +135 (max), 0 = 12 o'clock.",
-    "bargraphs": "Draw *_off, then *_on clipped to the value (from the bottom or left)."
+  "description": "Dark brushed-metal panel, aluminium knobs with a value arc, amber accent. Replaces the standard toolkit graphics of a Faust DSP dialog.",
+  "root": ".",
+  "scales": [
+    1,
+    2
+  ],
+  "default_scale": 1,
+  "scale_folders": {
+    "1": "1x",
+    "2": "2x"
   },
-  "faust_widget_map": {
-    "hslider": [
-      "sliders/hslider_track",
-      "sliders/hslider_fill",
-      "sliders/hslider_thumb",
-      "groups/value_display"
+  "colors": {
+    "accent": "#ff9a2e",
+    "panel": "#1c1e21",
+    "panel_highlight": "#2a2d30",
+    "groove": "#090a0b",
+    "text": "#dbdee0",
+    "text_dim": "#969aa0",
+    "value_text": "#ff9a2e",
+    "lcd": "#0b0d0c",
+    "meter_low": "#59f273",
+    "meter_mid": "#ffd940",
+    "meter_high": "#ff4738"
+  },
+  "fonts": {
+    "title": {
+      "family": "DejaVu Sans",
+      "weight": "bold",
+      "size": 18,
+      "color": "accent"
+    },
+    "group_label": {
+      "family": "DejaVu Sans",
+      "weight": "bold",
+      "size": 10,
+      "color": "text_dim",
+      "case": "upper"
+    },
+    "label": {
+      "family": "DejaVu Sans",
+      "weight": "normal",
+      "size": 11,
+      "color": "text"
+    },
+    "value": {
+      "family": "DejaVu Sans Mono",
+      "weight": "normal",
+      "size": 11,
+      "color": "value_text"
+    }
+  },
+  "layout": {
+    "units": "1x pixels; multiply by the scale in use",
+    "header_height": 44,
+    "panel_margin": 24,
+    "group_padding": 12,
+    "group_spacing": 12,
+    "group_label_offset": [
+      16,
+      8
     ],
-    "vslider": [
-      "sliders/vslider_track",
-      "sliders/vslider_fill",
-      "sliders/vslider_thumb",
-      "groups/value_display"
+    "group_label_height": 18,
+    "group_content_top": 30,
+    "tab_height": 26,
+    "tab_width": 110,
+    "tab_spacing": 2,
+    "widget_spacing": 18,
+    "label_gap": 4,
+    "label_position": "below",
+    "value_display_size": [
+      64,
+      18
     ],
-    "hslider/vslider [style:knob]": [
-      "knobs/knob_medium_strip",
-      "knobs/knob_large_strip",
-      "knobs/knob_small_strip",
-      "knobs/knob_medium_bipolar_strip (when min < 0 < max)"
+    "knob_size_rule": "knob_large for the main controls of a group, knob_medium by default, knob_small in dense groups; knob_medium_bipolar when min < 0 < max",
+    "default_sizes": {
+      "hslider": [
+        160,
+        28
+      ],
+      "vslider": [
+        28,
+        160
+      ],
+      "knob_large": [
+        80,
+        80
+      ],
+      "knob_medium": [
+        56,
+        56
+      ],
+      "knob_small": [
+        36,
+        36
+      ],
+      "button": [
+        96,
+        30
+      ],
+      "checkbox": [
+        20,
+        20
+      ],
+      "switch": [
+        40,
+        22
+      ],
+      "radio": [
+        18,
+        18
+      ],
+      "led": [
+        16,
+        16
+      ],
+      "nentry": [
+        80,
+        24
+      ],
+      "menu": [
+        130,
+        24
+      ],
+      "hbargraph": [
+        160,
+        14
+      ],
+      "vbargraph": [
+        14,
+        160
+      ]
+    }
+  },
+  "naming": {
+    "pattern": "<scale>x/<widget>/<widget>[_<variant>][_<part>][_<state>].png",
+    "rules": [
+      "Everything is lowercase with underscores; no spaces.",
+      "The folder is always the first word of the file name (the widget).",
+      "Segments always appear in the order widget, variant, part, state; any of the last three may be absent.",
+      "An asset key is the path without the scale folder and extension, e.g. knob/knob_large_strip.",
+      "The same key exists in every scale folder with identical layout (2x = double size)."
     ],
-    "nentry": [
-      "entries/nentry_box",
-      "entries/nentry_up_normal",
-      "entries/nentry_down_normal"
+    "widgets": [
+      "background",
+      "knob",
+      "hslider",
+      "vslider",
+      "button",
+      "checkbox",
+      "switch",
+      "radio",
+      "led",
+      "nentry",
+      "menu",
+      "hbargraph",
+      "vbargraph",
+      "group",
+      "tab",
+      "display"
     ],
-    "nentry/hslider [style:menu{...}]": [
-      "menus/menu_box",
-      "menus/menu_arrow",
-      "menus/menu_popup",
-      "menus/menu_item_highlight"
+    "variants": {
+      "knob": [
+        "large",
+        "medium",
+        "small",
+        "bipolar (medium size, arc from 12 o'clock)"
+      ],
+      "led": [
+        "amber",
+        "green",
+        "red"
+      ],
+      "nentry": [
+        "up",
+        "down"
+      ]
+    },
+    "parts": [
+      "strip",
+      "base",
+      "pointer",
+      "track",
+      "fill",
+      "thumb",
+      "box",
+      "arrow",
+      "popup",
+      "highlight",
+      "frame",
+      "label",
+      "panel",
+      "tile",
+      "value"
     ],
-    "nentry/hslider [style:radio{...}]": [
-      "toggles/radio_off",
-      "toggles/radio_on"
+    "states": [
+      "normal",
+      "hover",
+      "pressed",
+      "off",
+      "on",
+      "active"
     ],
-    "button": [
-      "buttons/button_normal",
-      "buttons/button_hover",
-      "buttons/button_pressed"
-    ],
-    "checkbox": [
-      "toggles/checkbox_off",
-      "toggles/checkbox_on",
-      "toggles/switch_off (alternative)",
-      "toggles/switch_on (alternative)"
-    ],
-    "hbargraph": [
-      "meters/hbargraph_off",
-      "meters/hbargraph_on"
-    ],
-    "vbargraph": [
-      "meters/vbargraph_off",
-      "meters/vbargraph_on"
-    ],
-    "[style:led] bargraph": [
-      "leds/led_*_off",
-      "leds/led_*_on"
-    ],
-    "hgroup / vgroup": [
-      "groups/group_frame",
-      "groups/label_plate"
-    ],
-    "tgroup": [
-      "groups/tab_normal",
-      "groups/tab_active",
-      "groups/group_frame"
-    ],
-    "dialog background": [
-      "background/panel_default",
-      "background/panel_tile"
+    "examples": [
+      "knob/knob_large_strip",
+      "knob/knob_small_pointer",
+      "hslider/hslider_thumb",
+      "button/button_pressed",
+      "led/led_green_on",
+      "nentry/nentry_up_pressed",
+      "tab/tab_active",
+      "background/background_panel"
     ]
   },
+  "conventions": {
+    "nine_slice": "[left, top, right, bottom] insets in 1x pixels, kept unscaled when stretching; the middle stretches.",
+    "filmstrips": "Vertical, square frames, 101 frames, frame 0 = minimum, last = maximum.",
+    "knob_sweep": "270 degrees from -135 (min) to +135 (max); 0 = 12 o'clock, clockwise.",
+    "hotspot": "Pixel (1x) of the image that marks the value position.",
+    "integrity": "sha256 of every file is listed per scale.",
+    "text": "No text is baked into the bitmaps; draw labels and values with the fonts and colours above."
+  },
+  "widgets": {
+    "hslider": {
+      "track": "hslider/hslider_track",
+      "fill": "hslider/hslider_fill",
+      "thumb": "hslider/hslider_thumb",
+      "value": "display/display_value"
+    },
+    "vslider": {
+      "track": "vslider/vslider_track",
+      "fill": "vslider/vslider_fill",
+      "thumb": "vslider/vslider_thumb",
+      "value": "display/display_value"
+    },
+    "knob": {
+      "filmstrip": {
+        "large": "knob/knob_large_strip",
+        "medium": "knob/knob_medium_strip",
+        "small": "knob/knob_small_strip",
+        "bipolar": "knob/knob_bipolar_strip"
+      },
+      "rotating": {
+        "large": [
+          "knob/knob_large_base",
+          "knob/knob_large_pointer"
+        ],
+        "medium": [
+          "knob/knob_medium_base",
+          "knob/knob_medium_pointer"
+        ],
+        "small": [
+          "knob/knob_small_base",
+          "knob/knob_small_pointer"
+        ]
+      },
+      "value": "display/display_value",
+      "applies_to": "hslider/vslider/nentry with [style:knob]"
+    },
+    "nentry": {
+      "box": "nentry/nentry_box",
+      "up": {
+        "normal": "nentry/nentry_up_normal",
+        "pressed": "nentry/nentry_up_pressed"
+      },
+      "down": {
+        "normal": "nentry/nentry_down_normal",
+        "pressed": "nentry/nentry_down_pressed"
+      }
+    },
+    "menu": {
+      "box": "menu/menu_box",
+      "arrow": "menu/menu_arrow",
+      "popup": "menu/menu_popup",
+      "highlight": "menu/menu_highlight",
+      "applies_to": "[style:menu{...}]"
+    },
+    "radio": {
+      "off": "radio/radio_off",
+      "on": "radio/radio_on",
+      "applies_to": "[style:radio{...}]"
+    },
+    "button": {
+      "normal": "button/button_normal",
+      "hover": "button/button_hover",
+      "pressed": "button/button_pressed"
+    },
+    "checkbox": {
+      "off": "checkbox/checkbox_off",
+      "on": "checkbox/checkbox_on",
+      "alternative": {
+        "off": "switch/switch_off",
+        "on": "switch/switch_on"
+      }
+    },
+    "hbargraph": {
+      "off": "hbargraph/hbargraph_off",
+      "on": "hbargraph/hbargraph_on"
+    },
+    "vbargraph": {
+      "off": "vbargraph/vbargraph_off",
+      "on": "vbargraph/vbargraph_on"
+    },
+    "led": {
+      "amber": {
+        "off": "led/led_amber_off",
+        "on": "led/led_amber_on"
+      },
+      "green": {
+        "off": "led/led_green_off",
+        "on": "led/led_green_on"
+      },
+      "red": {
+        "off": "led/led_red_off",
+        "on": "led/led_red_on"
+      }
+    },
+    "hgroup": {
+      "frame": "group/group_frame",
+      "label": "group/group_label"
+    },
+    "vgroup": {
+      "frame": "group/group_frame",
+      "label": "group/group_label"
+    },
+    "tgroup": {
+      "tab": "tab/tab_normal",
+      "tab_active": "tab/tab_active",
+      "page": "group/group_frame"
+    },
+    "background": {
+      "panel": "background/background_panel",
+      "tile": "background/background_tile"
+    }
+  },
+  "asset_keys": "Widget entries name asset keys; look them up in 'assets' and pick 'files' for the scale in use.",
   "assets": {
-    "background/panel_default": {
+    "background/background_panel": {
       "type": "background",
       "note": "Full panel 1200x800 (1x) with header band (44 px), vignette and corner screws.",
       "files": {
-        "1x": "1x/background/panel_default.png",
-        "2x": "2x/background/panel_default.png"
+        "1x": "1x/background/background_panel.png",
+        "2x": "2x/background/background_panel.png"
       },
       "size": {
         "1x": [
@@ -99,14 +357,19 @@
           2400,
           1600
         ]
-      }
+      },
+      "sha256": {
+        "1x": "eb0804bac13c4bab84567c17e89da07a4ece4b6e342d2c2d266210597dffced5",
+        "2x": "116021565d7e28605b7545bdd177e61cea7ea48c6d9ce248e4543e3035d5cd44"
+      },
+      "draw": "Draw at the dialog origin; scale or crop to the dialog size (keep the 44 px header band at the top)."
     },
-    "background/panel_tile": {
+    "background/background_tile": {
       "type": "background-tile",
       "note": "Seamless brushed-metal tile for panels of any size.",
       "files": {
-        "1x": "1x/background/panel_tile.png",
-        "2x": "2x/background/panel_tile.png"
+        "1x": "1x/background/background_tile.png",
+        "2x": "2x/background/background_tile.png"
       },
       "size": {
         "1x": [
@@ -117,355 +380,14 @@
           512,
           512
         ]
-      }
-    },
-    "knobs/knob_large_strip": {
-      "type": "knob-filmstrip",
-      "frames": 101,
-      "orientation": "vertical",
-      "frame_size": [
-        80,
-        80
-      ],
-      "sweep_degrees": 270.0,
-      "note": "Frame 0 = minimum, last frame = maximum.",
-      "files": {
-        "1x": "1x/knobs/knob_large_strip.png",
-        "2x": "2x/knobs/knob_large_strip.png"
       },
-      "size": {
-        "1x": [
-          80,
-          8080
-        ],
-        "2x": [
-          160,
-          16160
-        ]
-      }
-    },
-    "knobs/knob_large_base": {
-      "type": "knob-base",
-      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
-      "files": {
-        "1x": "1x/knobs/knob_large_base.png",
-        "2x": "2x/knobs/knob_large_base.png"
+      "sha256": {
+        "1x": "018bec6b7e8dade4628d4c36f7bc05d0a90d18a512839e936cdb91b01659fe7d",
+        "2x": "51b34d71b5846420b803b752789fd063ea1fef67fe801a0760a1f943152187fe"
       },
-      "size": {
-        "1x": [
-          80,
-          80
-        ],
-        "2x": [
-          160,
-          160
-        ]
-      }
+      "draw": "Tile from the dialog origin to fill any area; seamless in both directions."
     },
-    "knobs/knob_large_pointer": {
-      "type": "knob-pointer",
-      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
-      "files": {
-        "1x": "1x/knobs/knob_large_pointer.png",
-        "2x": "2x/knobs/knob_large_pointer.png"
-      },
-      "size": {
-        "1x": [
-          80,
-          80
-        ],
-        "2x": [
-          160,
-          160
-        ]
-      }
-    },
-    "knobs/knob_medium_strip": {
-      "type": "knob-filmstrip",
-      "frames": 101,
-      "orientation": "vertical",
-      "frame_size": [
-        56,
-        56
-      ],
-      "sweep_degrees": 270.0,
-      "note": "Frame 0 = minimum, last frame = maximum.",
-      "files": {
-        "1x": "1x/knobs/knob_medium_strip.png",
-        "2x": "2x/knobs/knob_medium_strip.png"
-      },
-      "size": {
-        "1x": [
-          56,
-          5656
-        ],
-        "2x": [
-          112,
-          11312
-        ]
-      }
-    },
-    "knobs/knob_medium_base": {
-      "type": "knob-base",
-      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
-      "files": {
-        "1x": "1x/knobs/knob_medium_base.png",
-        "2x": "2x/knobs/knob_medium_base.png"
-      },
-      "size": {
-        "1x": [
-          56,
-          56
-        ],
-        "2x": [
-          112,
-          112
-        ]
-      }
-    },
-    "knobs/knob_medium_pointer": {
-      "type": "knob-pointer",
-      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
-      "files": {
-        "1x": "1x/knobs/knob_medium_pointer.png",
-        "2x": "2x/knobs/knob_medium_pointer.png"
-      },
-      "size": {
-        "1x": [
-          56,
-          56
-        ],
-        "2x": [
-          112,
-          112
-        ]
-      }
-    },
-    "knobs/knob_medium_bipolar_strip": {
-      "type": "knob-filmstrip",
-      "frames": 101,
-      "orientation": "vertical",
-      "frame_size": [
-        56,
-        56
-      ],
-      "sweep_degrees": 270.0,
-      "note": "Value arc grows from 12 o'clock: for pan, detune and other +/- ranges.",
-      "files": {
-        "1x": "1x/knobs/knob_medium_bipolar_strip.png",
-        "2x": "2x/knobs/knob_medium_bipolar_strip.png"
-      },
-      "size": {
-        "1x": [
-          56,
-          5656
-        ],
-        "2x": [
-          112,
-          11312
-        ]
-      }
-    },
-    "knobs/knob_small_strip": {
-      "type": "knob-filmstrip",
-      "frames": 101,
-      "orientation": "vertical",
-      "frame_size": [
-        36,
-        36
-      ],
-      "sweep_degrees": 270.0,
-      "note": "Frame 0 = minimum, last frame = maximum.",
-      "files": {
-        "1x": "1x/knobs/knob_small_strip.png",
-        "2x": "2x/knobs/knob_small_strip.png"
-      },
-      "size": {
-        "1x": [
-          36,
-          3636
-        ],
-        "2x": [
-          72,
-          7272
-        ]
-      }
-    },
-    "knobs/knob_small_base": {
-      "type": "knob-base",
-      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
-      "files": {
-        "1x": "1x/knobs/knob_small_base.png",
-        "2x": "2x/knobs/knob_small_base.png"
-      },
-      "size": {
-        "1x": [
-          36,
-          36
-        ],
-        "2x": [
-          72,
-          72
-        ]
-      }
-    },
-    "knobs/knob_small_pointer": {
-      "type": "knob-pointer",
-      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
-      "files": {
-        "1x": "1x/knobs/knob_small_pointer.png",
-        "2x": "2x/knobs/knob_small_pointer.png"
-      },
-      "size": {
-        "1x": [
-          36,
-          36
-        ],
-        "2x": [
-          72,
-          72
-        ]
-      }
-    },
-    "sliders/vslider_track": {
-      "type": "slider-track",
-      "nine_slice": [
-        0,
-        12,
-        0,
-        12
-      ],
-      "note": "Stretch vertically between the insets.",
-      "files": {
-        "1x": "1x/sliders/vslider_track.png",
-        "2x": "2x/sliders/vslider_track.png"
-      },
-      "size": {
-        "1x": [
-          28,
-          160
-        ],
-        "2x": [
-          56,
-          320
-        ]
-      }
-    },
-    "sliders/vslider_fill": {
-      "type": "slider-fill",
-      "nine_slice": [
-        0,
-        12,
-        0,
-        12
-      ],
-      "note": "Accent fill: clip from the bottom to the value.",
-      "files": {
-        "1x": "1x/sliders/vslider_fill.png",
-        "2x": "2x/sliders/vslider_fill.png"
-      },
-      "size": {
-        "1x": [
-          28,
-          160
-        ],
-        "2x": [
-          56,
-          320
-        ]
-      }
-    },
-    "sliders/vslider_thumb": {
-      "type": "slider-thumb",
-      "hotspot": [
-        17,
-        9
-      ],
-      "files": {
-        "1x": "1x/sliders/vslider_thumb.png",
-        "2x": "2x/sliders/vslider_thumb.png"
-      },
-      "size": {
-        "1x": [
-          34,
-          18
-        ],
-        "2x": [
-          68,
-          36
-        ]
-      }
-    },
-    "sliders/hslider_track": {
-      "type": "slider-track",
-      "nine_slice": [
-        12,
-        0,
-        12,
-        0
-      ],
-      "note": "Stretch horizontally between the insets.",
-      "files": {
-        "1x": "1x/sliders/hslider_track.png",
-        "2x": "2x/sliders/hslider_track.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          28
-        ],
-        "2x": [
-          320,
-          56
-        ]
-      }
-    },
-    "sliders/hslider_fill": {
-      "type": "slider-fill",
-      "nine_slice": [
-        12,
-        0,
-        12,
-        0
-      ],
-      "note": "Accent fill: clip from the left to the value.",
-      "files": {
-        "1x": "1x/sliders/hslider_fill.png",
-        "2x": "2x/sliders/hslider_fill.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          28
-        ],
-        "2x": [
-          320,
-          56
-        ]
-      }
-    },
-    "sliders/hslider_thumb": {
-      "type": "slider-thumb",
-      "hotspot": [
-        9,
-        17
-      ],
-      "files": {
-        "1x": "1x/sliders/hslider_thumb.png",
-        "2x": "2x/sliders/hslider_thumb.png"
-      },
-      "size": {
-        "1x": [
-          18,
-          34
-        ],
-        "2x": [
-          36,
-          68
-        ]
-      }
-    },
-    "buttons/button_normal": {
+    "button/button_hover": {
       "type": "button",
       "nine_slice": [
         8,
@@ -474,8 +396,8 @@
         8
       ],
       "files": {
-        "1x": "1x/buttons/button_normal.png",
-        "2x": "2x/buttons/button_normal.png"
+        "1x": "1x/button/button_hover.png",
+        "2x": "2x/button/button_hover.png"
       },
       "size": {
         "1x": [
@@ -486,9 +408,15 @@
           192,
           60
         ]
-      }
+      },
+      "sha256": {
+        "1x": "93bfd5c02ff27ebacb18b89bd7970b2e5891999bcf2532582d6f2fc5e61f9456",
+        "2x": "5daaa542b51dd091ad87b655b11a30f3d44185a0d4edf421e0abdc407525dbbc"
+      },
+      "draw": "Nine-slice stretch to the button size; pick the image by state (normal, hover, pressed).",
+      "state": "hover"
     },
-    "buttons/button_hover": {
+    "button/button_normal": {
       "type": "button",
       "nine_slice": [
         8,
@@ -497,8 +425,8 @@
         8
       ],
       "files": {
-        "1x": "1x/buttons/button_hover.png",
-        "2x": "2x/buttons/button_hover.png"
+        "1x": "1x/button/button_normal.png",
+        "2x": "2x/button/button_normal.png"
       },
       "size": {
         "1x": [
@@ -509,9 +437,15 @@
           192,
           60
         ]
-      }
+      },
+      "sha256": {
+        "1x": "a40fe42bde8242a3cd948eebaa1df42748c19eb6f92574f95898ec95bc00be82",
+        "2x": "dedb17e2efed83688e407f67ad7de07651ff0335be4ca6044cd289cebf7b2e0f"
+      },
+      "draw": "Nine-slice stretch to the button size; pick the image by state (normal, hover, pressed).",
+      "state": "normal"
     },
-    "buttons/button_pressed": {
+    "button/button_pressed": {
       "type": "button",
       "nine_slice": [
         8,
@@ -520,8 +454,8 @@
         8
       ],
       "files": {
-        "1x": "1x/buttons/button_pressed.png",
-        "2x": "2x/buttons/button_pressed.png"
+        "1x": "1x/button/button_pressed.png",
+        "2x": "2x/button/button_pressed.png"
       },
       "size": {
         "1x": [
@@ -532,13 +466,19 @@
           192,
           60
         ]
-      }
+      },
+      "sha256": {
+        "1x": "ec1f3c9d73654107bd1c36642cd8bdc473258b3f6aeb6dfdac081de00bd39bd7",
+        "2x": "799d824a2513a2a89783e5d72ad6285bdbbbe62d53adf470db9b2a881c2e9cf7"
+      },
+      "draw": "Nine-slice stretch to the button size; pick the image by state (normal, hover, pressed).",
+      "state": "pressed"
     },
-    "toggles/checkbox_off": {
+    "checkbox/checkbox_off": {
       "type": "checkbox",
       "files": {
-        "1x": "1x/toggles/checkbox_off.png",
-        "2x": "2x/toggles/checkbox_off.png"
+        "1x": "1x/checkbox/checkbox_off.png",
+        "2x": "2x/checkbox/checkbox_off.png"
       },
       "size": {
         "1x": [
@@ -549,48 +489,19 @@
           40,
           40
         ]
-      }
-    },
-    "toggles/switch_off": {
-      "type": "switch",
-      "note": "Alternative look for Faust checkboxes.",
-      "files": {
-        "1x": "1x/toggles/switch_off.png",
-        "2x": "2x/toggles/switch_off.png"
       },
-      "size": {
-        "1x": [
-          40,
-          22
-        ],
-        "2x": [
-          80,
-          44
-        ]
-      }
-    },
-    "toggles/radio_off": {
-      "type": "radio",
-      "files": {
-        "1x": "1x/toggles/radio_off.png",
-        "2x": "2x/toggles/radio_off.png"
+      "sha256": {
+        "1x": "6a7ca02bc29fb3147bbe9c1afc531e92cc3336cb0f17968fe56a8ae97ad6e55d",
+        "2x": "01013aec19d47b3b4967e928daf965b076fa643c85367bee75cc76431b9266df"
       },
-      "size": {
-        "1x": [
-          18,
-          18
-        ],
-        "2x": [
-          36,
-          36
-        ]
-      }
+      "draw": "Draw unscaled; the image follows the checkbox value (off/on).",
+      "state": "off"
     },
-    "toggles/checkbox_on": {
+    "checkbox/checkbox_on": {
       "type": "checkbox",
       "files": {
-        "1x": "1x/toggles/checkbox_on.png",
-        "2x": "2x/toggles/checkbox_on.png"
+        "1x": "1x/checkbox/checkbox_on.png",
+        "2x": "2x/checkbox/checkbox_on.png"
       },
       "size": {
         "1x": [
@@ -601,487 +512,15 @@
           40,
           40
         ]
-      }
-    },
-    "toggles/switch_on": {
-      "type": "switch",
-      "note": "Alternative look for Faust checkboxes.",
-      "files": {
-        "1x": "1x/toggles/switch_on.png",
-        "2x": "2x/toggles/switch_on.png"
       },
-      "size": {
-        "1x": [
-          40,
-          22
-        ],
-        "2x": [
-          80,
-          44
-        ]
-      }
-    },
-    "toggles/radio_on": {
-      "type": "radio",
-      "files": {
-        "1x": "1x/toggles/radio_on.png",
-        "2x": "2x/toggles/radio_on.png"
+      "sha256": {
+        "1x": "b4021f0dc06a74016bdfc5a198a8674ae464d52965f585db13a307bfd0ed0fa8",
+        "2x": "fb65065d4d526481347e966cb7119e88afb3d1bc5c9ed577eae48c9f0a8d5a76"
       },
-      "size": {
-        "1x": [
-          18,
-          18
-        ],
-        "2x": [
-          36,
-          36
-        ]
-      }
+      "draw": "Draw unscaled; the image follows the checkbox value (off/on).",
+      "state": "on"
     },
-    "leds/led_amber_off": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_amber_off.png",
-        "2x": "2x/leds/led_amber_off.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "leds/led_amber_on": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_amber_on.png",
-        "2x": "2x/leds/led_amber_on.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "leds/led_green_off": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_green_off.png",
-        "2x": "2x/leds/led_green_off.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "leds/led_green_on": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_green_on.png",
-        "2x": "2x/leds/led_green_on.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "leds/led_red_off": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_red_off.png",
-        "2x": "2x/leds/led_red_off.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "leds/led_red_on": {
-      "type": "led",
-      "files": {
-        "1x": "1x/leds/led_red_on.png",
-        "2x": "2x/leds/led_red_on.png"
-      },
-      "size": {
-        "1x": [
-          16,
-          16
-        ],
-        "2x": [
-          32,
-          32
-        ]
-      }
-    },
-    "entries/nentry_box": {
-      "type": "nentry-box",
-      "nine_slice": [
-        6,
-        6,
-        6,
-        6
-      ],
-      "files": {
-        "1x": "1x/entries/nentry_box.png",
-        "2x": "2x/entries/nentry_box.png"
-      },
-      "size": {
-        "1x": [
-          80,
-          24
-        ],
-        "2x": [
-          160,
-          48
-        ]
-      }
-    },
-    "entries/nentry_up_normal": {
-      "type": "nentry-arrow",
-      "files": {
-        "1x": "1x/entries/nentry_up_normal.png",
-        "2x": "2x/entries/nentry_up_normal.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          11
-        ],
-        "2x": [
-          28,
-          22
-        ]
-      }
-    },
-    "entries/nentry_up_pressed": {
-      "type": "nentry-arrow",
-      "files": {
-        "1x": "1x/entries/nentry_up_pressed.png",
-        "2x": "2x/entries/nentry_up_pressed.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          11
-        ],
-        "2x": [
-          28,
-          22
-        ]
-      }
-    },
-    "entries/nentry_down_normal": {
-      "type": "nentry-arrow",
-      "files": {
-        "1x": "1x/entries/nentry_down_normal.png",
-        "2x": "2x/entries/nentry_down_normal.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          11
-        ],
-        "2x": [
-          28,
-          22
-        ]
-      }
-    },
-    "entries/nentry_down_pressed": {
-      "type": "nentry-arrow",
-      "files": {
-        "1x": "1x/entries/nentry_down_pressed.png",
-        "2x": "2x/entries/nentry_down_pressed.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          11
-        ],
-        "2x": [
-          28,
-          22
-        ]
-      }
-    },
-    "menus/menu_box": {
-      "type": "menu-box",
-      "nine_slice": [
-        8,
-        6,
-        30,
-        6
-      ],
-      "note": "Right 24 px is the arrow well; keep it in the right inset.",
-      "files": {
-        "1x": "1x/menus/menu_box.png",
-        "2x": "2x/menus/menu_box.png"
-      },
-      "size": {
-        "1x": [
-          130,
-          24
-        ],
-        "2x": [
-          260,
-          48
-        ]
-      }
-    },
-    "menus/menu_arrow": {
-      "type": "menu-arrow",
-      "files": {
-        "1x": "1x/menus/menu_arrow.png",
-        "2x": "2x/menus/menu_arrow.png"
-      },
-      "size": {
-        "1x": [
-          10,
-          7
-        ],
-        "2x": [
-          20,
-          14
-        ]
-      }
-    },
-    "menus/menu_popup": {
-      "type": "menu-popup",
-      "nine_slice": [
-        6,
-        6,
-        6,
-        6
-      ],
-      "files": {
-        "1x": "1x/menus/menu_popup.png",
-        "2x": "2x/menus/menu_popup.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          120
-        ],
-        "2x": [
-          320,
-          240
-        ]
-      }
-    },
-    "menus/menu_item_highlight": {
-      "type": "menu-highlight",
-      "nine_slice": [
-        6,
-        4,
-        6,
-        4
-      ],
-      "files": {
-        "1x": "1x/menus/menu_item_highlight.png",
-        "2x": "2x/menus/menu_item_highlight.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          22
-        ],
-        "2x": [
-          320,
-          44
-        ]
-      }
-    },
-    "meters/vbargraph_off": {
-      "type": "bargraph",
-      "note": "Unlit LED column; draw vbargraph_on clipped from the bottom to the value.",
-      "files": {
-        "1x": "1x/meters/vbargraph_off.png",
-        "2x": "2x/meters/vbargraph_off.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          160
-        ],
-        "2x": [
-          28,
-          320
-        ]
-      }
-    },
-    "meters/vbargraph_on": {
-      "type": "bargraph",
-      "files": {
-        "1x": "1x/meters/vbargraph_on.png",
-        "2x": "2x/meters/vbargraph_on.png"
-      },
-      "size": {
-        "1x": [
-          14,
-          160
-        ],
-        "2x": [
-          28,
-          320
-        ]
-      }
-    },
-    "meters/hbargraph_off": {
-      "type": "bargraph",
-      "note": "Unlit LED row; draw hbargraph_on clipped from the left to the value.",
-      "files": {
-        "1x": "1x/meters/hbargraph_off.png",
-        "2x": "2x/meters/hbargraph_off.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          14
-        ],
-        "2x": [
-          320,
-          28
-        ]
-      }
-    },
-    "meters/hbargraph_on": {
-      "type": "bargraph",
-      "files": {
-        "1x": "1x/meters/hbargraph_on.png",
-        "2x": "2x/meters/hbargraph_on.png"
-      },
-      "size": {
-        "1x": [
-          160,
-          14
-        ],
-        "2x": [
-          320,
-          28
-        ]
-      }
-    },
-    "groups/group_frame": {
-      "type": "group-frame",
-      "nine_slice": [
-        12,
-        12,
-        12,
-        12
-      ],
-      "note": "hgroup / vgroup panel.",
-      "files": {
-        "1x": "1x/groups/group_frame.png",
-        "2x": "2x/groups/group_frame.png"
-      },
-      "size": {
-        "1x": [
-          220,
-          160
-        ],
-        "2x": [
-          440,
-          320
-        ]
-      }
-    },
-    "groups/label_plate": {
-      "type": "label-plate",
-      "nine_slice": [
-        9,
-        0,
-        9,
-        0
-      ],
-      "files": {
-        "1x": "1x/groups/label_plate.png",
-        "2x": "2x/groups/label_plate.png"
-      },
-      "size": {
-        "1x": [
-          120,
-          18
-        ],
-        "2x": [
-          240,
-          36
-        ]
-      }
-    },
-    "groups/tab_normal": {
-      "type": "tab",
-      "nine_slice": [
-        8,
-        6,
-        8,
-        0
-      ],
-      "files": {
-        "1x": "1x/groups/tab_normal.png",
-        "2x": "2x/groups/tab_normal.png"
-      },
-      "size": {
-        "1x": [
-          110,
-          26
-        ],
-        "2x": [
-          220,
-          52
-        ]
-      }
-    },
-    "groups/tab_active": {
-      "type": "tab",
-      "nine_slice": [
-        8,
-        6,
-        8,
-        0
-      ],
-      "files": {
-        "1x": "1x/groups/tab_active.png",
-        "2x": "2x/groups/tab_active.png"
-      },
-      "size": {
-        "1x": [
-          110,
-          26
-        ],
-        "2x": [
-          220,
-          52
-        ]
-      }
-    },
-    "groups/value_display": {
+    "display/display_value": {
       "type": "value-display",
       "nine_slice": [
         5,
@@ -1091,8 +530,8 @@
       ],
       "note": "Numeric readout under knobs and sliders.",
       "files": {
-        "1x": "1x/groups/value_display.png",
-        "2x": "2x/groups/value_display.png"
+        "1x": "1x/display/display_value.png",
+        "2x": "2x/display/display_value.png"
       },
       "size": {
         "1x": [
@@ -1103,7 +542,1121 @@
           128,
           36
         ]
-      }
+      },
+      "sha256": {
+        "1x": "353ef978f00be72438dfc74f0ddb260b97532afeb91357b17987235848c9f343",
+        "2x": "aa96056db7b094a9a7fb93e8a0031fa2ff68336ced88526b7f42998d06dd8ace"
+      },
+      "draw": "Nine-slice stretch below knobs and sliders; draw the value in colors.value_text."
+    },
+    "group/group_frame": {
+      "type": "group-frame",
+      "nine_slice": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "note": "hgroup / vgroup panel.",
+      "files": {
+        "1x": "1x/group/group_frame.png",
+        "2x": "2x/group/group_frame.png"
+      },
+      "size": {
+        "1x": [
+          220,
+          160
+        ],
+        "2x": [
+          440,
+          320
+        ]
+      },
+      "sha256": {
+        "1x": "29416fb533a66fd1bedd2fce871c0f79664a3311f5185eeb9055d9abb7499dea",
+        "2x": "1835721d14a5f70c15b0c0cca3b0b4cc7d9456c80a6c22805e6e497fef2ddfde"
+      },
+      "draw": "Nine-slice stretch behind the children of an hgroup or vgroup (or a tgroup page)."
+    },
+    "group/group_label": {
+      "type": "label-plate",
+      "nine_slice": [
+        9,
+        0,
+        9,
+        0
+      ],
+      "files": {
+        "1x": "1x/group/group_label.png",
+        "2x": "2x/group/group_label.png"
+      },
+      "size": {
+        "1x": [
+          120,
+          18
+        ],
+        "2x": [
+          240,
+          36
+        ]
+      },
+      "sha256": {
+        "1x": "2d69a1689373d97b5eab5c3dddb90908d58b6b44c9fde17c5dda95ba106da154",
+        "2x": "5a2c162ff6d56c3ca15b6288d0f99f74c1eca2c06b5aee5045baed753c1ec125"
+      },
+      "draw": "Nine-slice stretch behind the group label at layout.group_label_offset."
+    },
+    "hbargraph/hbargraph_off": {
+      "type": "bargraph",
+      "note": "Unlit LED row; draw hbargraph_on clipped from the left to the value.",
+      "files": {
+        "1x": "1x/hbargraph/hbargraph_off.png",
+        "2x": "2x/hbargraph/hbargraph_off.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          14
+        ],
+        "2x": [
+          320,
+          28
+        ]
+      },
+      "sha256": {
+        "1x": "c14f36cd1ae6bb032034f4e01df2c45739872a88953e91f35dc8c6355ca2cc33",
+        "2x": "b06c533c04f924495e7d1cb17bcbe0a8b4fb133fc41691a168437890383cc73c"
+      },
+      "draw": "Draw *_off, then *_on clipped to the value (vertical from the bottom, horizontal from the left). May be scaled along the long axis.",
+      "state": "off"
+    },
+    "hbargraph/hbargraph_on": {
+      "type": "bargraph",
+      "files": {
+        "1x": "1x/hbargraph/hbargraph_on.png",
+        "2x": "2x/hbargraph/hbargraph_on.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          14
+        ],
+        "2x": [
+          320,
+          28
+        ]
+      },
+      "sha256": {
+        "1x": "fddc4c1c7115bcddb122e52f8aa5a64170af934d01aab59f56c600bdc17a8998",
+        "2x": "b92ffab70d634b1605c4742bc18b5143d30d1db448fe62c580066875c7e886e3"
+      },
+      "draw": "Draw *_off, then *_on clipped to the value (vertical from the bottom, horizontal from the left). May be scaled along the long axis.",
+      "state": "on"
+    },
+    "hslider/hslider_fill": {
+      "type": "slider-fill",
+      "nine_slice": [
+        12,
+        0,
+        12,
+        0
+      ],
+      "note": "Accent fill: clip from the left to the value.",
+      "files": {
+        "1x": "1x/hslider/hslider_fill.png",
+        "2x": "2x/hslider/hslider_fill.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          28
+        ],
+        "2x": [
+          320,
+          56
+        ]
+      },
+      "sha256": {
+        "1x": "58296de6c0c4c42ecb6a352d023a2a86bfc53dd5e5ef1514ff1c2ddac367d14b",
+        "2x": "2af25a0f5a99081470a97db288d609f2f7a5ae5ec9617e6fe7423e6391a1bbb9"
+      },
+      "draw": "Nine-slice stretch like the track, then clip: vertical from the bottom up to the value, horizontal from the left to the value."
+    },
+    "hslider/hslider_thumb": {
+      "type": "slider-thumb",
+      "hotspot": [
+        9,
+        17
+      ],
+      "files": {
+        "1x": "1x/hslider/hslider_thumb.png",
+        "2x": "2x/hslider/hslider_thumb.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          34
+        ],
+        "2x": [
+          36,
+          68
+        ]
+      },
+      "sha256": {
+        "1x": "df4a9b8cc1e513f37a3ae62faf82de9d5320f767bcebcd2e947b65a54b3b2209",
+        "2x": "fbf95b55040edac446e675fcd751307beda95d4cce96a2398b1cd0622368126c"
+      },
+      "draw": "Centre the hotspot on the value position, which runs between the track's nine-slice insets."
+    },
+    "hslider/hslider_track": {
+      "type": "slider-track",
+      "nine_slice": [
+        12,
+        0,
+        12,
+        0
+      ],
+      "note": "Stretch horizontally between the insets.",
+      "files": {
+        "1x": "1x/hslider/hslider_track.png",
+        "2x": "2x/hslider/hslider_track.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          28
+        ],
+        "2x": [
+          320,
+          56
+        ]
+      },
+      "sha256": {
+        "1x": "bbfc710514b1625f8c2c607281d36692340d8842548bf972a2ffacd7d2187be7",
+        "2x": "9617b36b2a39471adcebc0c1fb46f3dd6111ff7289b2ad86905fc0d4d3f93b05"
+      },
+      "draw": "Nine-slice stretch along the slider's long axis to the widget length."
+    },
+    "knob/knob_bipolar_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        56,
+        56
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Value arc grows from 12 o'clock: for pan, detune and other +/- ranges.",
+      "files": {
+        "1x": "1x/knob/knob_bipolar_strip.png",
+        "2x": "2x/knob/knob_bipolar_strip.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          5656
+        ],
+        "2x": [
+          112,
+          11312
+        ]
+      },
+      "sha256": {
+        "1x": "ed9729e80f9ed0cd614a219a651c999a40c7c369153b64e7b54da07b62bd7b4c",
+        "2x": "7def1153d1a346795f77c2fb2ab691333f0913600caeed3ffe235fb0fabc12e8"
+      },
+      "draw": "frame = round(value01 * (frames - 1)); copy the square frame_size rectangle at y = frame * frame_height.",
+      "sweep_start_degrees": -135.0
+    },
+    "knob/knob_large_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knob/knob_large_base.png",
+        "2x": "2x/knob/knob_large_base.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          80
+        ],
+        "2x": [
+          160,
+          160
+        ]
+      },
+      "sha256": {
+        "1x": "d2c536f334a1cb16e181df7d82ac9842976b2c4e3960ef1fd099d338be254290",
+        "2x": "3f5c6aa869ff92f3b5cdc00d061c79065fbc360e916eeda8826f3a15df57f8ea"
+      },
+      "draw": "Draw static, then the pointer on top.",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_large_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knob/knob_large_pointer.png",
+        "2x": "2x/knob/knob_large_pointer.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          80
+        ],
+        "2x": [
+          160,
+          160
+        ]
+      },
+      "sha256": {
+        "1x": "b57885901b24d5e387db1e82e3a2379e07f03f3d3cef58e07e9dd118abc4ec46",
+        "2x": "a2269689685e84276fe082d53c473cf7877b38d19d7024be0ba488bb1c47a88c"
+      },
+      "draw": "Rotate about the image centre by angle = sweep_start + value01 * sweep_degrees (0 = 12 o'clock, clockwise).",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_large_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        80,
+        80
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knob/knob_large_strip.png",
+        "2x": "2x/knob/knob_large_strip.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          8080
+        ],
+        "2x": [
+          160,
+          16160
+        ]
+      },
+      "sha256": {
+        "1x": "72e0542b70a5ded65c648b36cda7a75f0ee5941f29fcb9e964b1f1e06d2998fa",
+        "2x": "ccd6b2c07c8270d12d1a72a2bcef388a6762a080cf12f4bc31126cc909838a10"
+      },
+      "draw": "frame = round(value01 * (frames - 1)); copy the square frame_size rectangle at y = frame * frame_height.",
+      "sweep_start_degrees": -135.0
+    },
+    "knob/knob_medium_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knob/knob_medium_base.png",
+        "2x": "2x/knob/knob_medium_base.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          56
+        ],
+        "2x": [
+          112,
+          112
+        ]
+      },
+      "sha256": {
+        "1x": "34f2049ca6f0770b7770e14610c0192a3e5eab017e3231c3d66210be7bdab53e",
+        "2x": "2d7834a5bde5f2ca87e5d168d7c7ff81fe41dceb3536bbbd01c8e4543b58211e"
+      },
+      "draw": "Draw static, then the pointer on top.",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_medium_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knob/knob_medium_pointer.png",
+        "2x": "2x/knob/knob_medium_pointer.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          56
+        ],
+        "2x": [
+          112,
+          112
+        ]
+      },
+      "sha256": {
+        "1x": "36ee425a054013fb7c9fe7d97abaf41a58f1bbade0f4e27a292669b62a608d3c",
+        "2x": "9f61056420152f3970d8207cd56572946bdc923dace155d50d6b211abf4deae5"
+      },
+      "draw": "Rotate about the image centre by angle = sweep_start + value01 * sweep_degrees (0 = 12 o'clock, clockwise).",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_medium_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        56,
+        56
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knob/knob_medium_strip.png",
+        "2x": "2x/knob/knob_medium_strip.png"
+      },
+      "size": {
+        "1x": [
+          56,
+          5656
+        ],
+        "2x": [
+          112,
+          11312
+        ]
+      },
+      "sha256": {
+        "1x": "30380bb65b7fb8081cd544943bf3d1e080d8234e69ed77272b8ed344892b0250",
+        "2x": "7c56c7492cfdf22278db5ac60561b114e3972a5ecae6780c337526ef8d8c8e07"
+      },
+      "draw": "frame = round(value01 * (frames - 1)); copy the square frame_size rectangle at y = frame * frame_height.",
+      "sweep_start_degrees": -135.0
+    },
+    "knob/knob_small_base": {
+      "type": "knob-base",
+      "note": "Static knob body without pointer or value arc, for toolkits that rotate a pointer.",
+      "files": {
+        "1x": "1x/knob/knob_small_base.png",
+        "2x": "2x/knob/knob_small_base.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          36
+        ],
+        "2x": [
+          72,
+          72
+        ]
+      },
+      "sha256": {
+        "1x": "f7e69298b44f1198ac17aaeb9723565c7e16c06925f3b38735edf16ed01d90b1",
+        "2x": "77e04ff0cd1bf2ce17c1deccdc67db956706ec6fe129dce1ca0e3bb3532a9908"
+      },
+      "draw": "Draw static, then the pointer on top.",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_small_pointer": {
+      "type": "knob-pointer",
+      "note": "Pointer at 12 o'clock on a transparent square; rotate about the centre from -135 to +135 degrees.",
+      "files": {
+        "1x": "1x/knob/knob_small_pointer.png",
+        "2x": "2x/knob/knob_small_pointer.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          36
+        ],
+        "2x": [
+          72,
+          72
+        ]
+      },
+      "sha256": {
+        "1x": "72ef2ad931994ff5937e8a87de62e8459171ad78b0177537a88e1b43b281a716",
+        "2x": "d42cccb982ed48b3325ceb38064c88b36a348f217dd486280572fcac8da56aad"
+      },
+      "draw": "Rotate about the image centre by angle = sweep_start + value01 * sweep_degrees (0 = 12 o'clock, clockwise).",
+      "sweep_start_degrees": -135.0,
+      "sweep_degrees": 270.0
+    },
+    "knob/knob_small_strip": {
+      "type": "knob-filmstrip",
+      "frames": 101,
+      "orientation": "vertical",
+      "frame_size": [
+        36,
+        36
+      ],
+      "sweep_degrees": 270.0,
+      "note": "Frame 0 = minimum, last frame = maximum.",
+      "files": {
+        "1x": "1x/knob/knob_small_strip.png",
+        "2x": "2x/knob/knob_small_strip.png"
+      },
+      "size": {
+        "1x": [
+          36,
+          3636
+        ],
+        "2x": [
+          72,
+          7272
+        ]
+      },
+      "sha256": {
+        "1x": "d3681384cb8e664a022016ca27cfad9c49cf4c9dacb1bd4e84752ee45c6ef38a",
+        "2x": "74dd45d62385ec9b4efad0580d76281d5141741839e09362b1b5bebae0a940cc"
+      },
+      "draw": "frame = round(value01 * (frames - 1)); copy the square frame_size rectangle at y = frame * frame_height.",
+      "sweep_start_degrees": -135.0
+    },
+    "led/led_amber_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_amber_off.png",
+        "2x": "2x/led/led_amber_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "a2fb8c24b66b3f28503ba52a8379b43075d0d570f917d82d5dd2f120dc6ab476",
+        "2x": "8b7613d9bd5994896746d215e4e8cc0e0b25374668e4465f9d467236a11c63a7"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "off"
+    },
+    "led/led_amber_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_amber_on.png",
+        "2x": "2x/led/led_amber_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "045bd8196db56fd01d749f909c79bab0767d226d9b59304ffd863bb6aca42708",
+        "2x": "c86a8747d13d37ccd7ecbf74d5932f26851b5ee7fdb8e0f309b7366b7151bf72"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "on"
+    },
+    "led/led_green_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_green_off.png",
+        "2x": "2x/led/led_green_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "73b1be66ec43d8c9b1136e481486d0f01645ade61e74adab667576b2f6e1ac0b",
+        "2x": "7aedf9e7ce2f8db75c01f2231cdec89f8bccf29f63d32a9d17e1fef956b2c172"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "off"
+    },
+    "led/led_green_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_green_on.png",
+        "2x": "2x/led/led_green_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "e7e39d4a34ebf7161ea7e5f43fa70c5e0c74d528e9ab3a81967031f3725fa916",
+        "2x": "d18e56e16879342bdae29e5c6f74b2e9141bc3417cc3c4a1eb16e906232dade8"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "on"
+    },
+    "led/led_red_off": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_red_off.png",
+        "2x": "2x/led/led_red_off.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "26710670b898ee2d20406bf5450ac3105172e97dbc7bc27c99a72c500804c535",
+        "2x": "be3e8fc35984e10a65187c66b45290a69a74cf04c932dd1b701de63edbe360d2"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "off"
+    },
+    "led/led_red_on": {
+      "type": "led",
+      "files": {
+        "1x": "1x/led/led_red_on.png",
+        "2x": "2x/led/led_red_on.png"
+      },
+      "size": {
+        "1x": [
+          16,
+          16
+        ],
+        "2x": [
+          32,
+          32
+        ]
+      },
+      "sha256": {
+        "1x": "f827d2a0cea594dc5a948cb15f5db8355e166ff776c5ea3c2c26e1c56bebd1fa",
+        "2x": "b8d2338f72605633c5200570b580d620a1edfb28b97c1a5eb584a69f1e65c836"
+      },
+      "draw": "Draw unscaled; on when the bargraph value is above its midpoint (or use as a status light).",
+      "state": "on"
+    },
+    "menu/menu_arrow": {
+      "type": "menu-arrow",
+      "files": {
+        "1x": "1x/menu/menu_arrow.png",
+        "2x": "2x/menu/menu_arrow.png"
+      },
+      "size": {
+        "1x": [
+          10,
+          7
+        ],
+        "2x": [
+          20,
+          14
+        ]
+      },
+      "sha256": {
+        "1x": "ff31a60fb8df570dc14398002f72d68401a8471bee2d5f5e74abcdd9f4d3fb44",
+        "2x": "724ee5b52e8c5ca16792b4266495c1ffbbd00f4aae0c883a25bb9dd8f85507fc"
+      },
+      "draw": "Centre in the arrow well of menu_box."
+    },
+    "menu/menu_box": {
+      "type": "menu-box",
+      "nine_slice": [
+        8,
+        6,
+        30,
+        6
+      ],
+      "note": "Right 24 px is the arrow well; keep it in the right inset.",
+      "files": {
+        "1x": "1x/menu/menu_box.png",
+        "2x": "2x/menu/menu_box.png"
+      },
+      "size": {
+        "1x": [
+          130,
+          24
+        ],
+        "2x": [
+          260,
+          48
+        ]
+      },
+      "sha256": {
+        "1x": "9b6df54912bf081a5b3c5bbe802e74a894cc6e9d32e6659772e7c44c958459a0",
+        "2x": "641a6b5de5d878f5893d686b624d8c0f0dfe7c1332e1413a2417c4f49710508e"
+      },
+      "draw": "Nine-slice stretch; keep the arrow well inside the right inset and centre menu_arrow in it; draw the item text from the left inset."
+    },
+    "menu/menu_highlight": {
+      "type": "menu-highlight",
+      "nine_slice": [
+        6,
+        4,
+        6,
+        4
+      ],
+      "files": {
+        "1x": "1x/menu/menu_highlight.png",
+        "2x": "2x/menu/menu_highlight.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          22
+        ],
+        "2x": [
+          320,
+          44
+        ]
+      },
+      "sha256": {
+        "1x": "e6c172d872882d64b133e65116e4934897d2b9eeb352982bdd06a1dc08ff56af",
+        "2x": "b072bbe586d34d7158827faa4996f4ee41ca2d80b39084cfa45f36ed43b8cc18"
+      },
+      "draw": "Nine-slice stretch behind the hovered or selected item."
+    },
+    "menu/menu_popup": {
+      "type": "menu-popup",
+      "nine_slice": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "files": {
+        "1x": "1x/menu/menu_popup.png",
+        "2x": "2x/menu/menu_popup.png"
+      },
+      "size": {
+        "1x": [
+          160,
+          120
+        ],
+        "2x": [
+          320,
+          240
+        ]
+      },
+      "sha256": {
+        "1x": "1e5f077391fc58e090083e6c30e18bb8c01efbbdf5ed41445593ff60ff4bb32a",
+        "2x": "b6fe31fa1576c10db32fd5d03f941f8408350700106b6fb04cd5ca5c83b6d7f4"
+      },
+      "draw": "Nine-slice stretch behind the open item list."
+    },
+    "nentry/nentry_box": {
+      "type": "nentry-box",
+      "nine_slice": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "files": {
+        "1x": "1x/nentry/nentry_box.png",
+        "2x": "2x/nentry/nentry_box.png"
+      },
+      "size": {
+        "1x": [
+          80,
+          24
+        ],
+        "2x": [
+          160,
+          48
+        ]
+      },
+      "sha256": {
+        "1x": "ae796bc7361787f56b4c80a217d8a1a05597a06144eac4d05f7bfc4044cefe0f",
+        "2x": "1ae90028bd6f8471c4aacbcb6df3e836fa30d0cbabd440593407d8b7fc999f54"
+      },
+      "draw": "Nine-slice stretch; draw the value text inside, right of the left inset, in colors.value_text."
+    },
+    "nentry/nentry_down_normal": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/nentry/nentry_down_normal.png",
+        "2x": "2x/nentry/nentry_down_normal.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      },
+      "sha256": {
+        "1x": "e6d9fc041da9ed011bc85e55790b840309847a638335a738ccc0bbde52b92e9f",
+        "2x": "d6c2a3d2bdfa78062b34189bc6dde391c4a7975f963ccc7d2d6cde1b5859cbdb"
+      },
+      "draw": "Up arrow on the upper half, down arrow on the lower half, right of the box; pick by state.",
+      "state": "normal"
+    },
+    "nentry/nentry_down_pressed": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/nentry/nentry_down_pressed.png",
+        "2x": "2x/nentry/nentry_down_pressed.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      },
+      "sha256": {
+        "1x": "55b7a2131ab598bc8395b58009afdcc19d0ac0a082a9f0ca4576212d0c9b6a64",
+        "2x": "91c6301bde1879a8e540286274ce7855f90f581eb24e11458e007c982aad5655"
+      },
+      "draw": "Up arrow on the upper half, down arrow on the lower half, right of the box; pick by state.",
+      "state": "pressed"
+    },
+    "nentry/nentry_up_normal": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/nentry/nentry_up_normal.png",
+        "2x": "2x/nentry/nentry_up_normal.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      },
+      "sha256": {
+        "1x": "cb0244bf25c7670572f81e8aeb5728b848d00f2dc9173cb036c08bc08034de10",
+        "2x": "efdd9863dd0714349ead8d42487e4eb11cfa62e6fd94215c5c9927cc68cc54d6"
+      },
+      "draw": "Up arrow on the upper half, down arrow on the lower half, right of the box; pick by state.",
+      "state": "normal"
+    },
+    "nentry/nentry_up_pressed": {
+      "type": "nentry-arrow",
+      "files": {
+        "1x": "1x/nentry/nentry_up_pressed.png",
+        "2x": "2x/nentry/nentry_up_pressed.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          11
+        ],
+        "2x": [
+          28,
+          22
+        ]
+      },
+      "sha256": {
+        "1x": "fe197b0f50c575d42c51ab5e5a353d6c1d8791872940095385544d883dd445bf",
+        "2x": "c593a819fcbc4a09dcd53dabad36eb83c847e1bbe9228020867ac50556f63fa1"
+      },
+      "draw": "Up arrow on the upper half, down arrow on the lower half, right of the box; pick by state.",
+      "state": "pressed"
+    },
+    "radio/radio_off": {
+      "type": "radio",
+      "files": {
+        "1x": "1x/radio/radio_off.png",
+        "2x": "2x/radio/radio_off.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          18
+        ],
+        "2x": [
+          36,
+          36
+        ]
+      },
+      "sha256": {
+        "1x": "c418f4d4f4b83b58221b89a23a6b634416f2964ffc70996727f3809ea3012486",
+        "2x": "62a8dcebda9a8f4018c41e10dc28db8cbff554e0485969a2f20b71b372a7318e"
+      },
+      "draw": "One per menu item of [style:radio{...}]; the image follows whether the item is selected.",
+      "state": "off"
+    },
+    "radio/radio_on": {
+      "type": "radio",
+      "files": {
+        "1x": "1x/radio/radio_on.png",
+        "2x": "2x/radio/radio_on.png"
+      },
+      "size": {
+        "1x": [
+          18,
+          18
+        ],
+        "2x": [
+          36,
+          36
+        ]
+      },
+      "sha256": {
+        "1x": "7a38b0883fc23d77d610a304c5e5c90c16ace6cf3b66fb700d8ef6ea7dc02178",
+        "2x": "53a95b3578688eb36e253639695e217793163570f4c334f9325e45ac8f9628df"
+      },
+      "draw": "One per menu item of [style:radio{...}]; the image follows whether the item is selected.",
+      "state": "on"
+    },
+    "switch/switch_off": {
+      "type": "switch",
+      "note": "Alternative look for Faust checkboxes.",
+      "files": {
+        "1x": "1x/switch/switch_off.png",
+        "2x": "2x/switch/switch_off.png"
+      },
+      "size": {
+        "1x": [
+          40,
+          22
+        ],
+        "2x": [
+          80,
+          44
+        ]
+      },
+      "sha256": {
+        "1x": "6e50b7e2470311587c74ce1219d04c0a007c9ae7215c813ebbe55c66a1a320e0",
+        "2x": "8c9ce652eafbc3a4b1e43d5bff1e21d6d08705013e29f26eb37898841a363cad"
+      },
+      "draw": "Alternative checkbox look; draw unscaled by value (off/on).",
+      "state": "off"
+    },
+    "switch/switch_on": {
+      "type": "switch",
+      "note": "Alternative look for Faust checkboxes.",
+      "files": {
+        "1x": "1x/switch/switch_on.png",
+        "2x": "2x/switch/switch_on.png"
+      },
+      "size": {
+        "1x": [
+          40,
+          22
+        ],
+        "2x": [
+          80,
+          44
+        ]
+      },
+      "sha256": {
+        "1x": "db444bcd2eddf3106c9d00fe19543b18280a64305ebaa3f4fe9cf90b8536d283",
+        "2x": "1f88dd62fe55b7a5e165f3925295b2b705782815d59d913a252426097448a298"
+      },
+      "draw": "Alternative checkbox look; draw unscaled by value (off/on).",
+      "state": "on"
+    },
+    "tab/tab_active": {
+      "type": "tab",
+      "nine_slice": [
+        8,
+        6,
+        8,
+        0
+      ],
+      "files": {
+        "1x": "1x/tab/tab_active.png",
+        "2x": "2x/tab/tab_active.png"
+      },
+      "size": {
+        "1x": [
+          110,
+          26
+        ],
+        "2x": [
+          220,
+          52
+        ]
+      },
+      "sha256": {
+        "1x": "53fab98324b02b1a5a00ea851b5596ea35bb5c4a3272e783d9a02db42aa64e16",
+        "2x": "51d05ee116bf866d10b624569654c2f3828091da9bd95d8f9de0820a88cc9669"
+      },
+      "draw": "One per tgroup page; nine-slice stretch; tab_active for the shown page, tab_normal for the rest."
+    },
+    "tab/tab_normal": {
+      "type": "tab",
+      "nine_slice": [
+        8,
+        6,
+        8,
+        0
+      ],
+      "files": {
+        "1x": "1x/tab/tab_normal.png",
+        "2x": "2x/tab/tab_normal.png"
+      },
+      "size": {
+        "1x": [
+          110,
+          26
+        ],
+        "2x": [
+          220,
+          52
+        ]
+      },
+      "sha256": {
+        "1x": "127d1f6b7bf612be5a4b96ba65a1d570f7cef74c9ae90dea8f3fa1dc6414e573",
+        "2x": "e2c15af6c41c3331b570dda9c70cfd23e4dd55adc60f289348b24057908a0099"
+      },
+      "draw": "One per tgroup page; nine-slice stretch; tab_active for the shown page, tab_normal for the rest.",
+      "state": "normal"
+    },
+    "vbargraph/vbargraph_off": {
+      "type": "bargraph",
+      "note": "Unlit LED column; draw vbargraph_on clipped from the bottom to the value.",
+      "files": {
+        "1x": "1x/vbargraph/vbargraph_off.png",
+        "2x": "2x/vbargraph/vbargraph_off.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          160
+        ],
+        "2x": [
+          28,
+          320
+        ]
+      },
+      "sha256": {
+        "1x": "e129d00faf591052c9856eae5a5e707ef00b294024cf81f9586c5470e7aea533",
+        "2x": "f3178042ec9772fb45664922effb720e05f54cb651c10e098a7097ab73c6ccff"
+      },
+      "draw": "Draw *_off, then *_on clipped to the value (vertical from the bottom, horizontal from the left). May be scaled along the long axis.",
+      "state": "off"
+    },
+    "vbargraph/vbargraph_on": {
+      "type": "bargraph",
+      "files": {
+        "1x": "1x/vbargraph/vbargraph_on.png",
+        "2x": "2x/vbargraph/vbargraph_on.png"
+      },
+      "size": {
+        "1x": [
+          14,
+          160
+        ],
+        "2x": [
+          28,
+          320
+        ]
+      },
+      "sha256": {
+        "1x": "c3e77b620af89b4c5de63294d00d09a34a7fadf8219ac1c27901414fd27b0f73",
+        "2x": "537723208351649d385a467b2d3df32ac619262781268bc0bab796ae31b2b19a"
+      },
+      "draw": "Draw *_off, then *_on clipped to the value (vertical from the bottom, horizontal from the left). May be scaled along the long axis.",
+      "state": "on"
+    },
+    "vslider/vslider_fill": {
+      "type": "slider-fill",
+      "nine_slice": [
+        0,
+        12,
+        0,
+        12
+      ],
+      "note": "Accent fill: clip from the bottom to the value.",
+      "files": {
+        "1x": "1x/vslider/vslider_fill.png",
+        "2x": "2x/vslider/vslider_fill.png"
+      },
+      "size": {
+        "1x": [
+          28,
+          160
+        ],
+        "2x": [
+          56,
+          320
+        ]
+      },
+      "sha256": {
+        "1x": "e0811acdf605b74b902001435a51bcf5610be22016217836f04da6ac2405dc0f",
+        "2x": "697e475f35abd857f42d5cea10eb6c59a29c918663fc2267182af2c71838eddd"
+      },
+      "draw": "Nine-slice stretch like the track, then clip: vertical from the bottom up to the value, horizontal from the left to the value."
+    },
+    "vslider/vslider_thumb": {
+      "type": "slider-thumb",
+      "hotspot": [
+        17,
+        9
+      ],
+      "files": {
+        "1x": "1x/vslider/vslider_thumb.png",
+        "2x": "2x/vslider/vslider_thumb.png"
+      },
+      "size": {
+        "1x": [
+          34,
+          18
+        ],
+        "2x": [
+          68,
+          36
+        ]
+      },
+      "sha256": {
+        "1x": "a1cceec7d724779451bfe36c57c964e819d73a0874cba6c0c60f8e443d55833d",
+        "2x": "a9ba9e33698eeecb5ddc785ba62bdd3277a0bc1b063d171f1305728a8877aa33"
+      },
+      "draw": "Centre the hotspot on the value position, which runs between the track's nine-slice insets."
+    },
+    "vslider/vslider_track": {
+      "type": "slider-track",
+      "nine_slice": [
+        0,
+        12,
+        0,
+        12
+      ],
+      "note": "Stretch vertically between the insets.",
+      "files": {
+        "1x": "1x/vslider/vslider_track.png",
+        "2x": "2x/vslider/vslider_track.png"
+      },
+      "size": {
+        "1x": [
+          28,
+          160
+        ],
+        "2x": [
+          56,
+          320
+        ]
+      },
+      "sha256": {
+        "1x": "64e8047a398e1bcac0396912fe8d8c79ad750e68eae2c10a7c6688372e4d15e8",
+        "2x": "42a53c32fac1efdd0ad02b8279995883fbc89c78b6aa5e24d74187071f6fa28f"
+      },
+      "draw": "Nine-slice stretch along the slider's long axis to the widget length."
     }
   }
 }
